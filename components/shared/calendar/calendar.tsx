@@ -1,5 +1,6 @@
 import {makeStyles} from "@material-ui/core/styles";
 import React from "react";
+import style from "./index.module.css"
 
 const useStyles = makeStyles(() => ({
     calendar: {
@@ -11,19 +12,11 @@ const useStyles = makeStyles(() => ({
         position: "absolute",
         zIndex: 1,
     },
-    line1: {
+    content: {
         display: "flex",
-        flexDirection: "row",
-        alignItems: "flex-end",
-        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: "center",
         paddingTop: "20px",
-        zIndex: 2,
-    },
-    line2: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "flex-end",
-        justifyContent: "center",
         zIndex: 2,
     },
     month: {
@@ -32,7 +25,7 @@ const useStyles = makeStyles(() => ({
         fontWeight: 500,
         fontSize: "14px",
         lineHeight: "14px",
-        color: "#3889E8",
+        color: "#FFFFFF",
         margin: 0,
         zIndex: 2,
     },
@@ -46,16 +39,6 @@ const useStyles = makeStyles(() => ({
         margin: 0,
         zIndex: 2,
     },
-    th: {
-        fontFamily: "Roboto",
-        fontStyle: "normal",
-        fontWeight: "bold",
-        fontSize: "14px",
-        lineHeight: "16px",
-        color: "#FFFFFF",
-        margin: 0,
-        zIndex: 2,
-    }
 }));
 
 interface CalendarProps {
@@ -69,11 +52,8 @@ export default function Calendar(props: CalendarProps) {
     return (
         <div className={classes.calendar}>
             <img src={"/calendar.svg"} alt="calendar" className={classes.calendarBack} width={76} height={78}/>
-            <div className={classes.line1}>
+            <div className={`${classes.content} ${style.noSelect}`}>
                 <p className={classes.day}>{props.day}</p>
-                <p className={classes.th}>th</p>
-            </div>
-            <div className={classes.line2}>
                 <p className={classes.month}>{props.month}</p>
             </div>
         </div>
