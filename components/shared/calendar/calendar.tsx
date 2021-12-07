@@ -1,4 +1,4 @@
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import style from "./index.module.css"
 
@@ -46,12 +46,12 @@ interface CalendarProps {
     day: string
 }
 
-export default function Calendar(props: CalendarProps) {
+const Calendar: React.FC<CalendarProps> = (props) => {
     const classes = useStyles();
 
     return (
         <div className={classes.calendar}>
-            <img src={"/calendar.svg"} alt="calendar" className={classes.calendarBack} width={76} height={78}/>
+            <img src={"/calendar.svg"} alt="calendar" className={classes.calendarBack} width={76} height={78} />
             <div className={`${classes.content} ${style.noSelect}`}>
                 <p className={classes.day}>{props.day}</p>
                 <p className={classes.month}>{props.month}</p>
@@ -59,3 +59,5 @@ export default function Calendar(props: CalendarProps) {
         </div>
     );
 }
+
+export default Calendar;

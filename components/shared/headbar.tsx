@@ -1,4 +1,4 @@
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { useRouter } from 'next/router'
 import React from "react";
 
@@ -38,19 +38,19 @@ interface HeadBarProps {
     children?: React.ReactNode
 }
 
-export default function HeadBar(props: HeadBarProps) {
+const HeadBar: React.FC = (props: HeadBarProps) => {
     const classes = useStyles();
     const history = useRouter();
 
-    const backHandler = ()=> {
+    const backHandler = () => {
         history.back()
     }
 
     return (
         <div className={classes.bar}>
             <div className={classes.barFront}>
-                <img src={"/back_arrow.svg"} onClick={backHandler} alt="back"/>
-                <img src={"/exit.svg"} alt="exit"/>
+                <img src={"/back_arrow.svg"} onClick={backHandler} alt="back" />
+                <img src={"/exit.svg"} alt="exit" />
             </div>
 
             <div className={classes.barPadding}>
@@ -62,3 +62,5 @@ export default function HeadBar(props: HeadBarProps) {
         </div>
     );
 }
+
+export default HeadBar;
