@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './index.module.css'
+import styles from './index.module.scss'
 // import calender from "../../../public/calender.svg"  ??似乎是next引入图片的问题
 
 const ActCard: React.FC = () => {
