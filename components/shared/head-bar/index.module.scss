@@ -1,0 +1,29 @@
+.bar {
+  top: 0;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  .barFront {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    & > * {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  }
+  .barPadding {
+    flex-grow: 1;
+  }
+  .barBack {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    & > * {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  }
+}
