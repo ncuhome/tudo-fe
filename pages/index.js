@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import HomePage from "./home/homepage";
+import HomePage from "./home";
 
 export default function Root() {
 
