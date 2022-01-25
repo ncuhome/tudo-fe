@@ -4,6 +4,7 @@ import HeadBar from "../../components/shared/head-bar";
 // import Calendar from "../../components/shared/calendar/calendar";
 import ActCard from "../../components/shared/activity-card";
 import styles from "./index.module.scss";
+import Link from "next/link";
 
 const HomePage: React.FC = () => {
   // const classes = useStyles
@@ -41,7 +42,11 @@ const HomePage: React.FC = () => {
           </>
         )}
       </div>
-      <ActCard />
+      <Link href="/actdetail">
+        <a>
+          <ActCard />
+        </a>
+      </Link>
     </div>
   );
 };

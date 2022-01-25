@@ -17,13 +17,11 @@ const HeadBar: React.FC = (props: HeadBarProps) => {
   return (
     <div className={styles.bar}>
       <div className={styles.barFront}>
-        <img src={"/back_arrow.svg"} onClick={backHandler} alt="back" />
-        <img src={"/exit.svg"} alt="exit" />
+        <img style={{width:"30px"}} src={"/back_arrow.svg"} onClick={backHandler} alt="back" />
+        <img style={{width:"30px"}} src={"/exit.svg"} alt="exit" />
       </div>
-
       <div className={styles.barPadding}>
       </div>
-
       <div className={styles.barBack}>
         {props.children}
       </div>

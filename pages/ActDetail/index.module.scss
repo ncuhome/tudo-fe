@@ -1,0 +1,59 @@
+$grey: #707070;
+$border: 20px;
+
+.background {
+  background: #e5e5e5;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+
+  .card_text_div {
+    background-color: #fff;
+    width: 90%;
+    height: auto;
+    margin: $border;
+    border-radius: 18px;
+
+    .card_text_title {
+      font-size: large;
+      padding: $border;
+    }
+
+    .card_text_info {
+      padding-left: $border;
+
+      .info_detail {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  .cut_line {
+    font-size: 10px;
+    color: $grey;
+    display: flex;
+    align-items: center;
+  }
+  .cut_line::before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: $grey;
+    margin-left: 1vw;
+    margin-right: 2vw;
+  }
+  .cut_line::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: $grey;
+    margin-left: 2vw;
+    margin-right: 1vw;
+  }
+
+  .author {
+    margin: $border;
+  }
+}
