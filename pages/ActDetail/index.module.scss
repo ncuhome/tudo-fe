@@ -41,7 +41,7 @@ $border: 20px;
     flex: 1;
     height: 1px;
     background: $grey;
-    margin-left: 1vw;
+    margin-left: 6vw;
     margin-right: 2vw;
   }
   .cut_line::after {
@@ -50,10 +50,20 @@ $border: 20px;
     height: 1px;
     background: $grey;
     margin-left: 2vw;
-    margin-right: 1vw;
+    margin-right: 6vw;
   }
 
   .author {
-    margin: $border;
+    display: flex;
+    align-items: center;
+    margin-left: $border;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .intro_text{
+    margin-top:10px;
+    margin-left: $border;
+    margin-right: $border;
   }
 }
