@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import anime from "animejs";
 import HeadBar from "../../components/shared/head-bar";
 import ActCard from "../../components/shared/activity-card";
 import styles from "./index.module.scss";
@@ -15,8 +16,36 @@ const ActList: React.FC = () => {
 };
 
 const HomePage: React.FC = () => {
-  const tabText = useRef(null);
+  const animateTargetRef = useRef<any>();
   const [onChose, setOnChose] = useState(true);
+  const [tab, setTab] = useState("ing"); //ing表示当前选中正在进行标签
+
+  const ClickIngActHandler = () => {
+    if (tab === "ing") {
+      return;
+    }
+    setTab("ing");
+    anime({
+      duration: 500,
+      translateX: "0",
+      easing: "easeOutQuint",
+      targets: animateTargetRef.current,
+    }).play;
+  };
+
+  const ClickComingActHandler = () => {
+    if (tab === "coming") {
+      return;
+    }
+    setTab("coming");
+    anime({
+      duration: 500,
+      translateX: "19vw",
+      easing: "easeOutQuint",
+      targets: animateTargetRef.current,
+    }).play;
+  };
+
   return (
     <div className={styles.background}>
       <HeadBar />
@@ -51,9 +80,23 @@ const HomePage: React.FC = () => {
         {onChose ? null : (
           <>
             <div className={styles.process_tab}>
-              <div className={styles.process_button}></div>
-              <div className={styles.tab_text_left}>正在进行</div>
-              <div className={styles.tab_text_right}>即将进行</div>
+              <div ref={animateTargetRef} className={styles.process_button} />
+              <div
+                className={styles.tab_text_left}
+                onClick={() => {
+                  ClickIngActHandler();
+                }}
+              >
+                正在进行
+              </div>
+              <div
+                className={styles.tab_text_right}
+                onClick={() => {
+                  ClickComingActHandler();
+                }}
+              >
+                即将进行
+              </div>
             </div>
           </>
         )}
