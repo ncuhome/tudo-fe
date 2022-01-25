@@ -1,20 +1,25 @@
 import React, { useRef, useState } from "react";
-// import useStyles from "./css";
 import HeadBar from "../../components/shared/head-bar";
-// import Calendar from "../../components/shared/calendar/calendar";
 import ActCard from "../../components/shared/activity-card";
 import styles from "./index.module.scss";
 import Link from "next/link";
 
+const ActList: React.FC = () => {
+  return (
+    <Link href="/actdetail">
+      <a>
+        <ActCard />
+      </a>
+    </Link>
+  );
+};
+
 const HomePage: React.FC = () => {
-  // const classes = useStyles
   const tabText = useRef(null);
   const [onChose, setOnChose] = useState(true);
   return (
     <div className={styles.background}>
       <HeadBar />
-      {/* <Calendar month={"august"} day={"07"} /> */}
-      {/* <Calendar month={"april"} day={"11"} /> */}
       <div className={styles.act_tab}>
         {onChose ? (
           <>
@@ -42,11 +47,18 @@ const HomePage: React.FC = () => {
           </>
         )}
       </div>
-      <Link href="/actdetail">
-        <a>
-          <ActCard />
-        </a>
-      </Link>
+      <div>
+        {onChose ? null : (
+          <>
+            <div className={styles.process_tab}>
+              <div className={styles.process_button}></div>
+              <div className={styles.tab_text_left}>正在进行</div>
+              <div className={styles.tab_text_right}>即将进行</div>
+            </div>
+          </>
+        )}
+      </div>
+      <ActList />
     </div>
   );
 };
