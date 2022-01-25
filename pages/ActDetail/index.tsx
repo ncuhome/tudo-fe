@@ -34,7 +34,7 @@ const ActDetail: React.FC = () => {
       <div className={styles.cut_line}>
         发布者
       </div>
-      <div className={styles.author}>
+      <div className={styles.author}></div>
         <span>玛丽女王学院</span>
       </div>
       <div className={styles.cut_line}>
