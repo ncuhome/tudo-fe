@@ -10,20 +10,17 @@
     align-items: center;
     flex-direction: row;
     & > * {
-      margin-left: 10px;
-      margin-right: 10px;
+      width: 8vw;
+      margin-left: 2vw;
+      margin-right: 2vw;
     }
   }
-  .barPadding {
-    flex-grow: 1;
-  }
-  .barBack {
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
-    & > * {
-      margin-left: 10px;
-      margin-right: 10px;
-    }
+  .profile {
+    margin-top: 2vw;
+    margin-left: 60vw;
+    width: 10vw;
+    height: 10vw;
+    object-fit: cover;
+    border-radius: 50%;
   }
 }
