@@ -78,7 +78,7 @@ const HomePage: React.FC = () => {
       </div>
       <div>
         {onChose ? null : (
-          <>
+          <div className={styles.tab_div}>
             <div className={styles.process_tab}>
               <div ref={animateTargetRef} className={styles.process_button} />
               <div
@@ -98,7 +98,10 @@ const HomePage: React.FC = () => {
                 即将进行
               </div>
             </div>
-          </>
+            <Link href="/usedact">
+              <a style={{ marginRight: "20px", fontSize: "14px" }}>历史活动</a>
+            </Link>
+          </div>
         )}
       </div>
       <ActList />
