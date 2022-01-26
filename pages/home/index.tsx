@@ -1,18 +1,42 @@
 import React, { useRef, useState, useEffect } from "react";
 import anime from "animejs";
+import AOS from "aos";
 import Link from "next/link";
 import { atom, useRecoilState } from "recoil";
 import HeadBar from "../../components/shared/head-bar";
 import ActCard from "../../components/shared/activity-card";
 import styles from "./index.module.scss";
+import "aos/dist/aos.css";
 
 const ActList: React.FC = () => {
+  useEffect(() => {
+    AOS.init();
+  });
+
   return (
-    <Link href="/actdetail">
-      <a>
-        <ActCard />
-      </a>
-    </Link>
+    <>
+      <div data-aos="fade-up">
+        <Link href="/actdetail">
+          <a>
+            <ActCard />
+          </a>
+        </Link>
+      </div>
+      <div data-aos="fade-up">
+        <Link href="/actdetail">
+          <a>
+            <ActCard />
+          </a>
+        </Link>
+      </div>
+      <div data-aos="fade-up">
+        <Link href="/actdetail">
+          <a>
+            <ActCard />
+          </a>
+        </Link>
+      </div>
+    </>
   );
 };
 
@@ -21,7 +45,6 @@ const HomePage: React.FC = () => {
   // const [onChose, setOnChose] = useRecoilState(choseState);
   const [onChose, setOnChose] = useState(true);
   const [tab, setTab] = useState("ing"); //ing表示当前选中正在进行标签
-
   const ClickIngActHandler = () => {
     if (tab === "ing") {
       return;
