@@ -1,5 +1,6 @@
-import { useRouter } from "next/router";
 import React from "react";
+import { Modal } from "@material-ui/core";
+import { useRouter } from "next/router";
 import styles from "./index.module.scss";
 
 interface HeadBarProps {
@@ -20,8 +21,6 @@ const HeadBar: React.FC = (props: HeadBarProps) => {
         <img src={"/back_arrow.svg"} onClick={backHandler} alt="back" />
         <img src={"/exit.svg"} alt="exit" />
       </div>
-      {/* <div className={styles.barPadding}></div>
-      <div className={styles.barBack}>{props.children}</div> */}
         <img className={styles.profile} src={"/img/profile.png"} />
     </div>
   );
