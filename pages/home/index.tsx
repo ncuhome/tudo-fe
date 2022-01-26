@@ -1,9 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
 import anime from "animejs";
+import Link from "next/link";
+import { atom, useRecoilState } from "recoil";
 import HeadBar from "../../components/shared/head-bar";
 import ActCard from "../../components/shared/activity-card";
 import styles from "./index.module.scss";
-import Link from "next/link";
 
 const ActList: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const ActList: React.FC = () => {
 
 const HomePage: React.FC = () => {
   const animateTargetRef = useRef<any>();
+  // const [onChose, setOnChose] = useRecoilState(choseState);
   const [onChose, setOnChose] = useState(true);
   const [tab, setTab] = useState("ing"); //ing表示当前选中正在进行标签
 
@@ -57,7 +59,9 @@ const HomePage: React.FC = () => {
             </span>
             <span
               style={{ marginRight: "20px" }}
-              onClick={() => setOnChose(false)}
+              onClick={() => {
+                setOnChose(false);
+              }}
             >
               所有活动
             </span>
