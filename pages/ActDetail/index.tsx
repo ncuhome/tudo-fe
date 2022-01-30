@@ -14,7 +14,7 @@ const ActDetail: React.FC = () => {
           <div style={{ marginBottom: "10px" }} className={styles.info_detail}>
             <img
               style={{ width: "15px", marginRight: "10px" }}
-              src={"/location.svg"}
+              src={"/img/location.svg"}
             />
             <span style={{ fontSize: "5px", color: "#707070" }}>
               南昌大学玛丽女王学院报告厅
@@ -35,7 +35,7 @@ const ActDetail: React.FC = () => {
       <div className={styles.author}>
         <img
           style={{ width: "15px", marginRight: "10px" }}
-          src={"/author.svg"}
+          src={"/img/author.svg"}
         />
         <span style={{ fontSize: "5px" }}>玛丽女王学院</span>
       </div>

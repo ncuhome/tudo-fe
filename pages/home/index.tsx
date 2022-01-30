@@ -45,6 +45,7 @@ const HomePage: React.FC = () => {
   // const [onChose, setOnChose] = useRecoilState(choseState);
   const [onChose, setOnChose] = useState(true);
   const [tab, setTab] = useState("ing"); //ing表示当前选中正在进行标签
+
   const ClickIngActHandler = () => {
     if (tab === "ing") {
       return;
@@ -125,7 +126,7 @@ const HomePage: React.FC = () => {
                 即将进行
               </div>
             </div>
-            <Link href="/usedact">
+            <Link href="/end-act">
               <a style={{ marginRight: "20px", fontSize: "14px" }}>历史活动</a>
             </Link>
           </div>

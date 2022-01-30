@@ -20,6 +20,7 @@ $border: 20px;
       width: 40vw;
       height: 40px;
       border-radius: 18px;
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2),  0 4px 10px 0 rgba(0, 0, 0, 0.10);
       display: flex;
       align-items: center;
       position: relative;
@@ -31,6 +32,7 @@ $border: 20px;
         margin-right: 2px;
         border-radius: 16px;
         background-color: #fff;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2),  0 4px 10px 0 rgba(0, 0, 0, 0.10);
       }
 
       .tab_text_left {

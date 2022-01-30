@@ -24,7 +24,7 @@ export default function Root() {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/img/favicon.ico" />
       </Head>
 
       <RecoilRoot>
