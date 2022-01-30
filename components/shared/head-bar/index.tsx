@@ -59,8 +59,9 @@ const HeadBar: React.FC = (props: HeadBarProps) => {
       <Modal
         isOpen={modalIsOpen}
         ariaHideApp={false}
-        shouldFocusAfterRender={false}
         style={customStyles}
+        onRequestClose={() => setIsOpen(false)}
+        shouldCloseOnOverlayClick={true}
       >
         <div style={ModalStyles}>切换账号</div>
       </Modal>
