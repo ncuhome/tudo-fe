@@ -1,3 +1,4 @@
+$grey: #707070;
 .bar {
   top: 0;
   height: 15vw;
@@ -22,5 +23,45 @@
     height: 10vw;
     object-fit: cover;
     border-radius: 50%;
+  }
+}
+
+.switchModal {
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centerModal {
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  .loginLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .loginLink > span {
+    color: rgb(123, 123, 123);
+    font-size: 5vw;
+    font-weight: normal;
+    margin-left: 2vw;
+  }
+
+  & > div {
+    font-size: 5vw;
+    font-weight: bold;
+    color: rgb(78, 135, 225);
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

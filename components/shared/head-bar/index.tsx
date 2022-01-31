@@ -1,41 +1,17 @@
 import React, { useEffect } from "react";
 import Modal from "react-modal";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import { customCenterStyles, customSwitchStyles } from "./modal-style";
 import styles from "./index.module.scss";
 
 interface HeadBarProps {
   children?: React.ReactNode;
 }
 
-const customStyles = {
-  overlay: {
-    backgroundColor: "0",
-    top: "15vw",
-  },
-  content: {
-    position: "absolute",
-    inset: "0 0 0 64vw",
-    width: "30vw",
-    height: "10vw",
-    padding: "0",
-    borderRadius: "16px",
-    border: "none",
-    boxShadow:
-      " 0 4px 4px 0 rgba(0, 0, 0, 0.2),  0 4px 10px 0 rgba(0, 0, 0, 0.10)",
-  },
-};
-
-const ModalStyles = {
-  width: "100%",
-  height: "100%",
-  fontSize: "14px",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-};
-
 const HeadBar: React.FC = (props: HeadBarProps) => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [centerModal, setCenterModal] = React.useState(false);
   const history = useRouter();
   const backHandler = () => {
     history.back();
@@ -59,11 +35,40 @@ const HeadBar: React.FC = (props: HeadBarProps) => {
       <Modal
         isOpen={modalIsOpen}
         ariaHideApp={false}
-        style={customStyles}
+        style={customSwitchStyles}
         onRequestClose={() => setIsOpen(false)}
         shouldCloseOnOverlayClick={true}
       >
-        <div style={ModalStyles}>切换账号</div>
+        <div
+          className={styles.switchModal}
+          onClick={() => {
+            setCenterModal(true);
+          }}
+        >
+          切换账号
+        </div>
+      </Modal>
+      <Modal
+        isOpen={centerModal}
+        ariaHideApp={false}
+        style={customCenterStyles}
+        onRequestClose={() => setCenterModal(false)}
+        shouldCloseOnOverlayClick={true}
+      >
+        <div className={styles.centerModal}>
+          <div>test</div>
+          <Link href={"/login"}>
+            <a>
+              <div className={styles.loginLink}>
+                <img
+                  style={{ width: "5vw", height: "5vw" }}
+                  src={"/img/add.png"}
+                />
+                <span>登录组织账号</span>
+              </div>
+            </a>
+          </Link>
+        </div>
       </Modal>
     </div>
   );
