@@ -74,7 +74,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className={styles.background}>
-      <HeadBar />
+      <HeadBar profileDisplay={true} />
       <div className={styles.act_tab}>
         {onChose ? (
           <>

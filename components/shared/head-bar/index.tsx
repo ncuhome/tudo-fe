@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Profiler, useEffect } from "react";
 import Modal from "react-modal";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -6,10 +6,10 @@ import { customCenterStyles, customSwitchStyles } from "./modal-style";
 import styles from "./index.module.scss";
 
 interface HeadBarProps {
-  children?: React.ReactNode;
+  profileDisplay?: boolean;
 }
 
-const HeadBar: React.FC = (props: HeadBarProps) => {
+const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [centerModal, setCenterModal] = React.useState(false);
   const history = useRouter();
@@ -27,11 +27,13 @@ const HeadBar: React.FC = (props: HeadBarProps) => {
         <img src={"/img/back_arrow.svg"} onClick={backHandler} alt="back" />
         <img src={"/img/exit.svg"} alt="exit" />
       </div>
-      <img
-        onClick={() => controlModal()}
-        className={styles.profile}
-        src={"/img/profile.png"}
-      />
+      {props.profileDisplay ? (
+        <img
+          onClick={() => controlModal()}
+          className={styles.profile}
+          src={"/img/profile.png"}
+        />
+      ) : null}
       <Modal
         isOpen={modalIsOpen}
         ariaHideApp={false}

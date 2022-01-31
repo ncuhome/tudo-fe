@@ -6,6 +6,7 @@ const Login: React.FC = () => {
   return(
     <div className={styles.background}>
       <HeadBar/>
+      
     </div>
   )
 
