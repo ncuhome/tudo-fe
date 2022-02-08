@@ -2,16 +2,24 @@ import React, { Profiler, useEffect } from "react";
 import Modal from "react-modal";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { customCenterStyles, customSwitchStyles } from "./modal-style";
+import {
+  customCenterStyles,
+  switchStylesAdmin,
+  switchStylesDefault,
+} from "./modal-style";
 import styles from "./index.module.scss";
 
 interface HeadBarProps {
   profileDisplay?: boolean;
+  switchModalForAdmin: boolean;
 }
 
 const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [centerModal, setCenterModal] = React.useState(false);
+  const switchStyles = props.switchModalForAdmin
+    ? switchStylesAdmin
+    : switchStylesDefault;
   const history = useRouter();
   const backHandler = () => {
     history.back();
@@ -37,7 +45,7 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
       <Modal
         isOpen={modalIsOpen}
         ariaHideApp={false}
-        style={customSwitchStyles}
+        style={switchStyles}
         onRequestClose={() => setIsOpen(false)}
         shouldCloseOnOverlayClick={true}
       >
@@ -49,6 +57,9 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
         >
           切换账号
         </div>
+        {props.switchModalForAdmin ? (
+          <div className={styles.switchModal}>我的管理</div>
+        ) : null}
       </Modal>
       <Modal
         isOpen={centerModal}

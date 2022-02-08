@@ -5,7 +5,7 @@ import styles from "./index.module.scss";
 const Login: React.FC = () => {
   return (
     <div className={styles.background}>
-      <HeadBar />
+      <HeadBar switchModalForAdmin={false} />
       <div className={styles.loginForm}>
         <div style={{ fontSize: "6.4vw" }}>登陆组织账号</div>
         <div style={{ marginTop: "10vh" }} className={styles.inputDiv}>
