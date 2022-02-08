@@ -11,7 +11,7 @@ import styles from "./index.module.scss";
 
 interface HeadBarProps {
   profileDisplay?: boolean;
-  switchModalForAdmin: boolean;
+  switchModalForAdmin: boolean; //用于控制点击头像的切换按钮中是否显示管理员选项
 }
 
 const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
@@ -58,7 +58,10 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
           切换账号
         </div>
         {props.switchModalForAdmin ? (
-          <div className={styles.switchModal}>我的管理</div>
+          <>
+            <div className={styles.cutline}></div>
+            <div className={styles.switchModal}>我的管理</div>
+          </>
         ) : null}
       </Modal>
       <Modal
@@ -70,8 +73,8 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
       >
         <div className={styles.centerModal}>
           <div>test</div>
+          <span></span>
           <Link href={"/login"}>
-            <a>
               <div className={styles.loginLink}>
                 <img
                   style={{ width: "5vw", height: "5vw" }}
@@ -79,7 +82,6 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
                 />
                 <span>登录组织账号</span>
               </div>
-            </a>
           </Link>
         </div>
       </Modal>

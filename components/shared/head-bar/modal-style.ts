@@ -4,6 +4,7 @@ export const switchStylesDefault = {
     top: "15vw",
   },
   content: {
+    overflow: "hidden",
     position: "absolute",
     inset: "0 0 0 64vw",
     width: "30vw",
@@ -22,6 +23,7 @@ export const switchStylesAdmin = {
     top: "15vw",
   },
   content: {
+    overflow: "hidden",
     position: "absolute",
     inset: "0 0 0 64vw",
     width: "30vw",
@@ -33,7 +35,6 @@ export const switchStylesAdmin = {
       " 0 4px 4px 0 rgba(0, 0, 0, 0.2),  0 4px 10px 0 rgba(0, 0, 0, 0.10)",
   },
 };
-
 
 export const customCenterStyles = {
   overlay: {

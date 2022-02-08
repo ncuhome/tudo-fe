@@ -26,6 +26,14 @@ $grey: #707070;
   }
 }
 
+.cutline {
+  content: "";
+  height: 1px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: #70707042;
+}
+
 .switchModal {
   width: 100%;
   height: 6vh;
@@ -63,5 +71,12 @@ $grey: #707070;
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  & > span {
+    content: "";
+    height: 1px;
+    margin: 5px 0 5px 0;
+    width: 100%;
+    background-color: #70707042;
   }
 }
