@@ -17,7 +17,7 @@ export const switchStylesDefault = {
   },
 };
 
-export const switchStylesAdmin = {
+export const switchStylesSM = {
   overlay: {
     backgroundColor: "0",
     top: "15vw",

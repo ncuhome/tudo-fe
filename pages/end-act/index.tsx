@@ -17,7 +17,7 @@ const ActList: React.FC = () => {
 const HistoryAct: React.FC = () => {
   return(
     <div className={styles.background}>
-      <HeadBar/>
+      <HeadBar switchModalForSM={false}/>
       <ActList/>
     </div>
   )

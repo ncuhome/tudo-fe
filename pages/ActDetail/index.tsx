@@ -5,7 +5,7 @@ import styles from "./index.module.scss";
 const ActDetail: React.FC = () => {
   return (
     <div className={styles.background}>
-      <HeadBar switchModalForAdmin={false}/>
+      <HeadBar switchModalForSM={false}/>
       <div className={styles.card_text_div}>
         <div className={styles.card_text_title}>
           南昌大学百年医学教育"南昌大学百年医学教育"南昌大学百年医学教育

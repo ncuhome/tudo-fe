@@ -15,7 +15,7 @@ $themeColor: rgb(76, 165, 169);
     flex-direction: column;
     position: relative;
 
-    .inputDiv {
+    .inputWrapper {
       position: relative;
       width: 80vw;
       .input {
@@ -36,7 +36,7 @@ $themeColor: rgb(76, 165, 169);
         pointer-events: none;
       }
     }
-    .loginButtonDiv {
+    .loginButtonWrapper {
       box-sizing: border-box;
       display: flex;
       justify-content: center;

@@ -1,0 +1,62 @@
+$border: 20px;
+.background {
+  background: #f0f0f2;
+  width: 100vw;
+  height: 100vh;
+
+  .act_tab {
+    margin: $border;
+  }
+
+  .tab_wrapper {
+    margin-top: 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .process_tab {
+      background-color: #d2d2d2;
+      margin-left: $border;
+      margin-right: 0;
+      width: 90vw;
+      height: 40px;
+      border-radius: 18px;
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2),  0 4px 10px 0 rgba(0, 0, 0, 0.10);
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      .process_button {
+        width: 45vw;
+        height: 36px;
+        margin-left: 2px;
+        margin-right: 2px;
+        border-radius: 16px;
+        background-color: #fff;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2),  0 4px 10px 0 rgba(0, 0, 0, 0.10);
+      }
+
+      .tab_text_left {
+        font-size: 12px;
+        width: 50%;
+        height: 100%;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+      }
+
+      .tab_text_right {
+        font-size: 12px;
+        width: 50%;
+        height: 100%;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        position: absolute;
+      }
+    }
+  }
+}

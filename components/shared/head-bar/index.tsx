@@ -4,21 +4,21 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import {
   customCenterStyles,
-  switchStylesAdmin,
+  switchStylesSM,
   switchStylesDefault,
 } from "./modal-style";
 import styles from "./index.module.scss";
 
 interface HeadBarProps {
   profileDisplay?: boolean;
-  switchModalForAdmin: boolean; //用于控制点击头像的切换按钮中是否显示管理员选项
+  switchModalForSM: boolean; //用于控制点击头像的切换按钮中是否显示超级管理员(Super Manager)选项
 }
 
 const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [centerModal, setCenterModal] = React.useState(false);
-  const switchStyles = props.switchModalForAdmin
-    ? switchStylesAdmin
+  const switchStyles = props.switchModalForSM
+    ? switchStylesSM
     : switchStylesDefault;
   const history = useRouter();
   const backHandler = () => {
@@ -57,7 +57,7 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
         >
           切换账号
         </div>
-        {props.switchModalForAdmin ? (
+        {props.switchModalForSM ? (
           <>
             <div className={styles.cutline}></div>
             <div className={styles.switchModal}>我的管理</div>
