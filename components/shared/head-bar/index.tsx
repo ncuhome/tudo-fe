@@ -4,23 +4,42 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import {
   customCenterStyles,
-  switchStylesSM,
   switchStylesDefault,
+  switchStylesComplex,
 } from "./modal-style";
 import styles from "./index.module.scss";
 
 interface HeadBarProps {
   profileDisplay?: boolean;
-  switchModalForSM: boolean; //用于控制点击头像的切换按钮中是否显示超级管理员(Super Manager)选项
+  switchModalRole?: String; //用于控制点击头像的切换按钮中显示的内容 ,有"Default", "SM", "Admin"三种选项
 }
 
 const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [centerModal, setCenterModal] = React.useState(false);
-  const switchStyles = props.switchModalForSM
-    ? switchStylesSM
-    : switchStylesDefault;
   const history = useRouter();
+
+  const switchStyles =
+    props.switchModalRole === "SM" || "Admin"
+      ? switchStylesComplex
+      : switchStylesDefault;
+
+  let switchModalText: String = "";
+  switch (props.switchModalRole) {
+    case "Default":
+      switchModalText = "dd";
+      break;
+    case "SM":
+      switchModalText = "我的管理";
+      break;
+    case "Admin":
+      switchModalText = "发布新活动";
+      break;
+    default:
+      switchModalText = "";
+      break;
+  }
+
   const backHandler = () => {
     history.back();
   };
@@ -57,12 +76,12 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
         >
           切换账号
         </div>
-        {props.switchModalForSM ? (
+        {props.switchModalRole === "Default" ? null : (
           <>
             <div className={styles.cutline}></div>
-            <div className={styles.switchModal}>我的管理</div>
+            <div className={styles.switchModal}>{switchModalText}</div>
           </>
-        ) : null}
+        )}
       </Modal>
       <Modal
         isOpen={centerModal}
@@ -75,13 +94,13 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
           <div>test</div>
           <span></span>
           <Link href={"/login"}>
-              <div className={styles.loginLink}>
-                <img
-                  style={{ width: "5vw", height: "5vw" }}
-                  src={"/img/add.png"}
-                />
-                <span>登录组织账号</span>
-              </div>
+            <div className={styles.loginLink}>
+              <img
+                style={{ width: "5vw", height: "5vw" }}
+                src={"/img/add.png"}
+              />
+              <span>登录组织账号</span>
+            </div>
           </Link>
         </div>
       </Modal>

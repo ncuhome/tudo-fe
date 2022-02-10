@@ -74,7 +74,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className={styles.background}>
-      <HeadBar profileDisplay={true} switchModalForSM={false}/>
+      <HeadBar profileDisplay={true} switchModalRole={"SM"}/>
       <div className={styles.act_tab}>
         {onChose ? (
           <>

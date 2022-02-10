@@ -17,7 +17,7 @@ export const switchStylesDefault = {
   },
 };
 
-export const switchStylesSM = {
+export const switchStylesComplex = {
   overlay: {
     backgroundColor: "0",
     top: "15vw",

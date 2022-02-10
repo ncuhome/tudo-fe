@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import ActCard from "../../components/shared/activity-card";
 import HeadBar from "../../components/shared/head-bar";
-import styles from "./index.module.scss"
+import styles from "./index.module.scss";
 
 const ActList: React.FC = () => {
   return (
@@ -15,12 +15,12 @@ const ActList: React.FC = () => {
 };
 
 const HistoryAct: React.FC = () => {
-  return(
+  return (
     <div className={styles.background}>
-      <HeadBar switchModalForSM={false}/>
-      <ActList/>
+      <HeadBar />
+      <ActList />
     </div>
-  )
-}
+  );
+};
 
 export default HistoryAct;

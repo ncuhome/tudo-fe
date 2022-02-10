@@ -73,7 +73,7 @@ const AdminHome: React.FC = () => {
 
   return (
     <div className={styles.background}>
-      <HeadBar profileDisplay={true} switchModalForSM={false} />
+      <HeadBar profileDisplay={true} switchModalRole={"Admin"} />
       <div className={styles.tab_wrapper}>
         <div className={styles.process_tab}>
           <div ref={animateTargetRef} className={styles.process_button} />
