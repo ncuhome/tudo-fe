@@ -8,28 +8,6 @@ $border: 20px;
   width: 100vw;
   height: 100vh;
 
-  .card_text_div {
-    background-color: #fff;
-    width: 90%;
-    height: auto;
-    margin: $border;
-    border-radius: 18px;
-
-    .card_text_title {
-      font-size: large;
-      padding: $border;
-    }
-
-    .card_text_info {
-      padding-left: $border;
-
-      .info_detail {
-        display: flex;
-        align-items: center;
-      }
-    }
-  }
-
   .cut_line {
     font-size: 10px;
     color: $grey;

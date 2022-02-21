@@ -1,4 +1,5 @@
 import React from "react";
+import ActInfoCard from "../../components/shared/act-info-card";
 import HeadBar from "../../components/shared/head-bar";
 import styles from "./index.module.scss";
 
@@ -6,7 +7,7 @@ const ActDetail: React.FC = () => {
   return (
     <div className={styles.background}>
       <HeadBar />
-      <div className={styles.card_text_div}>
+      {/* <div className={styles.card_text_div}>
         <div className={styles.card_text_title}>
           南昌大学百年医学教育"南昌大学百年医学教育"南昌大学百年医学教育
         </div>
@@ -30,7 +31,8 @@ const ActDetail: React.FC = () => {
             </span>
           </div>
         </div>
-      </div>
+      </div> */}
+      <ActInfoCard/>
       <div className={styles.cut_line}>发布者</div>
       <div className={styles.author}>
         <img

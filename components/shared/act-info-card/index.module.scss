@@ -1,0 +1,23 @@
+$border: 20px;
+
+.card_text_div {
+  background-color: #fff;
+  width: 90%;
+  height: auto;
+  margin: $border;
+  border-radius: 18px;
+
+  .card_text_title {
+    font-size: large;
+    padding: $border;
+  }
+
+  .card_text_info {
+    padding-left: $border;
+
+    .info_detail {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
