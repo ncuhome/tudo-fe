@@ -11,7 +11,7 @@ import styles from "./index.module.scss";
 
 interface HeadBarProps {
   profileDisplay?: boolean;
-  switchModalRole?: String; //用于控制点击头像的切换按钮中显示的内容 ,有"Default", "SM", "Admin"三种选项
+  switchModalRole?: String; //用于控制点击头像的切换按钮中显示的内容 ,有"Default", "SM", "Admin"三种选项, 分别代表普通用户, 超级管理员, 社团管理员
 }
 
 const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
@@ -24,19 +24,21 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
       ? switchStylesComplex
       : switchStylesDefault;
 
-  let switchModalText: String = "";
+  let switchModalText: string = "";
+  let hrefTextForRole: string = "";
+
   switch (props.switchModalRole) {
     case "Default":
-      switchModalText = "dd";
       break;
     case "SM":
       switchModalText = "我的管理";
+      hrefTextForRole = "/my-manage"
       break;
     case "Admin":
       switchModalText = "发布新活动";
+      hrefTextForRole = "/new-act"
       break;
     default:
-      switchModalText = "";
       break;
   }
 
@@ -79,7 +81,9 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
         {props.switchModalRole === "Default" ? null : (
           <>
             <div className={styles.cutline}></div>
-            <div className={styles.switchModal}>{switchModalText}</div>
+            <Link href={hrefTextForRole}>
+              <div className={styles.switchModal}>{switchModalText}</div>
+            </Link>
           </>
         )}
       </Modal>
