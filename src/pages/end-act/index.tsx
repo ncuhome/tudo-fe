@@ -1,15 +1,13 @@
 import React from "react";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import ActCard from "../../components/shared/activity-card";
 import HeadBar from "../../components/shared/head-bar";
 import styles from "./index.module.scss";
 
 const ActList: React.FC = () => {
   return (
-    <Link href="/actdetail">
-      <a>
-        <ActCard />
-      </a>
+    <Link style={{ color: "unset" }} to="/act-detail">
+      <ActCard />
     </Link>
   );
 };

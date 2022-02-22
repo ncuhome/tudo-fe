@@ -1,7 +1,6 @@
 import React, { Profiler, useEffect } from "react";
 import Modal from "react-modal";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { Link } from "react-router-dom";
 import {
   customCenterStyles,
   switchStylesDefault,
@@ -17,7 +16,6 @@ interface HeadBarProps {
 const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [centerModal, setCenterModal] = React.useState(false);
-  const history = useRouter();
 
   const switchStyles =
     props.switchModalRole === "SM" || "Admin"
@@ -32,19 +30,15 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
       break;
     case "SM":
       switchModalText = "我的管理";
-      hrefTextForRole = "/my-manage"
+      hrefTextForRole = "/my-manage";
       break;
     case "Admin":
       switchModalText = "发布新活动";
-      hrefTextForRole = "/new-act"
+      hrefTextForRole = "/admin-home/new-act";
       break;
     default:
       break;
   }
-
-  const backHandler = () => {
-    history.back();
-  };
 
   const controlModal = () => {
     setIsOpen(!modalIsOpen);
@@ -53,7 +47,11 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
   return (
     <div className={styles.bar}>
       <div className={styles.barFront}>
-        <img src={"/img/back_arrow.svg"} onClick={backHandler} alt="back" />
+        <img
+          src={"/img/back_arrow.svg"}
+          onClick={() => window.history.back()}
+          alt="back"
+        />
         <img src={"/img/exit.svg"} alt="exit" />
       </div>
       {props.profileDisplay ? (
@@ -81,7 +79,7 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
         {props.switchModalRole === "Default" ? null : (
           <>
             <div className={styles.cutline}></div>
-            <Link href={hrefTextForRole}>
+            <Link style={{ color: "unset" }} to={hrefTextForRole}>
               <div className={styles.switchModal}>{switchModalText}</div>
             </Link>
           </>
@@ -90,14 +88,14 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
       <Modal
         isOpen={centerModal}
         ariaHideApp={false}
-        style={customCenterStyles}
+        style={customCenterStyles} //中间打开有异常显示
         onRequestClose={() => setCenterModal(false)}
         shouldCloseOnOverlayClick={true}
       >
         <div className={styles.centerModal}>
           <div>test</div>
           <span></span>
-          <Link href={"/login"}>
+          <Link style={{ color: "unset" }} to={"/login"}>
             <div className={styles.loginLink}>
               <img
                 style={{ width: "5vw", height: "5vw" }}

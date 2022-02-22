@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import anime from "animejs";
 import AOS from "aos";
-import Link from "next/link";
-import { atom, useRecoilState } from "recoil";
+
+// import { atom, useRecoilState } from "recoil";
 import HeadBar from "../../components/shared/head-bar";
 import ActCard from "../../components/shared/activity-card";
 import styles from "./index.module.scss";
@@ -16,24 +17,18 @@ const ActList: React.FC = () => {
   return (
     <>
       <div data-aos="fade-up">
-        <Link href="/actdetail">
-          <a>
-            <ActCard />
-          </a>
+        <Link style={{ color: "unset" }} to="/act-detail">
+          <ActCard />
         </Link>
       </div>
       <div data-aos="fade-up">
-        <Link href="/actdetail">
-          <a>
-            <ActCard />
-          </a>
+        <Link style={{ color: "unset" }} to="/act-detail">
+          <ActCard />
         </Link>
       </div>
       <div data-aos="fade-up">
-        <Link href="/actdetail">
-          <a>
-            <ActCard />
-          </a>
+        <Link style={{ color: "unset" }} to="/act-detail">
+          <ActCard />
         </Link>
       </div>
     </>

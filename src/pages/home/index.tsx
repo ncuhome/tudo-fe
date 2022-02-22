@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import anime from "animejs";
 import AOS from "aos";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { atom, useRecoilState } from "recoil";
 import HeadBar from "../../components/shared/head-bar";
 import ActCard from "../../components/shared/activity-card";
@@ -16,24 +16,18 @@ const ActList: React.FC = () => {
   return (
     <>
       <div data-aos="fade-up">
-        <Link href="/actdetail">
-          <a>
-            <ActCard />
-          </a>
+        <Link style={{ color: "unset" }} to="/act-detail">
+          <ActCard />
         </Link>
       </div>
       <div data-aos="fade-up">
-        <Link href="/actdetail">
-          <a>
-            <ActCard />
-          </a>
+        <Link style={{ color: "unset" }} to="/act-detail">
+          <ActCard />
         </Link>
       </div>
       <div data-aos="fade-up">
-        <Link href="/actdetail">
-          <a>
-            <ActCard />
-          </a>
+        <Link style={{ color: "unset" }} to="/act-detail">
+          <ActCard />
         </Link>
       </div>
     </>
@@ -74,7 +68,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className={styles.background}>
-      <HeadBar profileDisplay={true} switchModalRole={"SM"}/>
+      <HeadBar profileDisplay={true} switchModalRole={"SM"} />
       <div className={styles.act_tab}>
         {onChose ? (
           <>
@@ -126,7 +120,7 @@ const HomePage: React.FC = () => {
                 即将进行
               </div>
             </div>
-            <Link href="/end-act">
+            <Link style={{ color: "unset" }} to="/end-act">
               <a style={{ marginRight: "20px", fontSize: "14px" }}>历史活动</a>
             </Link>
           </div>

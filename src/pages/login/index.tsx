@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import HeadBar from "../../components/shared/head-bar";
 import styles from "./index.module.scss";
 
@@ -22,7 +22,7 @@ const Login: React.FC = () => {
           </label>
         </div>
         <div className={styles.loginButtonWrapper}>
-          <Link href={"./admin-home"}>
+          <Link style={{ color: "unset" }} to={"/admin-home"}>
             <div className={styles.loginButton}>登录</div>
           </Link>
         </div>
