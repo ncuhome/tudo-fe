@@ -19,10 +19,11 @@ $themeColor: rgb(76, 165, 169);
       position: relative;
       width: 80vw;
       .input {
-        width: 80.5vw;
+        width: 80vw;
         font-size: 4.8vw;
         background-color: #f0f0f2;
         border: none;
+        border-radius: 0;
         border-bottom: 1px solid #888888;
         padding-top: 6vw;
         outline: none;
