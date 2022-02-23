@@ -1,6 +1,10 @@
-$border: 20px;
+$border: 5vw;
 $grey: #535353;
-$themeColor: #d7dadd;
+$inputBgColor: #d7dadd;
+
+@function pxToVw($px) {
+  @return ($px/375) + vw;
+}
 
 .card_text_div {
   background-color: #fff;
@@ -19,9 +23,9 @@ $themeColor: #d7dadd;
       resize: none;
       border: none;
       outline: none;
-      font-size: 4vw;
+      font-size: 3vw;
       color: $grey;
-      background-color: $themeColor;
+      background-color: $inputBgColor;
       width: 100%;
       border-radius: 8px;
       padding: 8px;
@@ -35,7 +39,7 @@ $themeColor: #d7dadd;
       display: flex;
       align-items: center;
 
-      & > div > span:first-child {
+      & > div > span {
         font-size: 3.5vw;
         width: 22.6vw;
         padding: 1.5vw;
@@ -45,21 +49,15 @@ $themeColor: #d7dadd;
       }
 
       & > div > span:last-child {
-        font-size: 3.5vw;
-        width: 22.6vw;
-        padding: 1.5vw;
         margin-left: 2vw;
-        border-radius: 8px;
-        color: #f3f3f3;
-        background-color: #d2d2d2;
       }
 
       .location_input {
         resize: none;
         border: none;
         outline: none;
-        font-size: 3.7vw;
-        background-color: $themeColor;
+        font-size: 3vw;
+        background-color: $inputBgColor;
         color: $grey;
         width: 70vw;
         height: 7vw;

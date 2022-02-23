@@ -1,4 +1,9 @@
-$border: 20px;
+$border: 5vw;
+
+@function pxToVw($px) {
+  @return ($px/375) + vw;
+}
+
 .background {
   background: #f0f0f2;
   width: 100vw;
@@ -36,7 +41,7 @@ $border: 20px;
       }
 
       .tab_text_left {
-        font-size: 12px;
+        font-size: 3vw;
         width: 50%;
         height: 100%;
         left: 0;
@@ -47,7 +52,7 @@ $border: 20px;
       }
 
       .tab_text_right {
-        font-size: 12px;
+        font-size: 3vw;
         width: 50%;
         height: 100%;
         right: 0;

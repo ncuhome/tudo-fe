@@ -72,11 +72,8 @@ const HomePage: React.FC = () => {
       <div className={styles.act_tab}>
         {onChose ? (
           <>
-            <span style={{ marginRight: "20px", fontWeight: "bold" }}>
-              推荐活动
-            </span>
+            <span style={{ fontWeight: "bold" }}>推荐活动</span>
             <span
-              style={{ marginRight: "20px" }}
               onClick={() => {
                 setOnChose(false);
               }}
@@ -86,15 +83,8 @@ const HomePage: React.FC = () => {
           </>
         ) : (
           <>
-            <span
-              style={{ marginRight: "20px" }}
-              onClick={() => setOnChose(true)}
-            >
-              推荐活动
-            </span>
-            <span style={{ marginRight: "20px", fontWeight: "bold" }}>
-              所有活动
-            </span>
+            <span onClick={() => setOnChose(true)}>推荐活动</span>
+            <span style={{ fontWeight: "bold" }}>所有活动</span>
           </>
         )}
       </div>
@@ -120,8 +110,10 @@ const HomePage: React.FC = () => {
                 即将进行
               </div>
             </div>
-            <Link style={{ color: "unset" }} to="/end-act">
-              <a style={{ marginRight: "20px", fontSize: "14px" }}>历史活动</a>
+            <Link to="/history-act">
+              <span style={{ marginRight: "20px", fontSize: "4vw" }}>
+                历史活动
+              </span>
             </Link>
           </div>
         )}

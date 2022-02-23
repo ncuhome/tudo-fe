@@ -43,7 +43,7 @@ export const customCenterStyles = {
   content: {
     position: "absolute",
     inset: "30vh 0 0 5vw",
-    width: "90vw",
+    width: "80vw",
     height: "15vh",
     border: "none",
     borderRadius: "20px",

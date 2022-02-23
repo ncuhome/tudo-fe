@@ -25,9 +25,9 @@ const ActInfoCard: React.FC<ActInfoCardProps> = (props: ActInfoCardProps) => {
         )}
       </div>
       <div className={styles.card_text_info}>
-        <div style={{ marginBottom: "20px" }} className={styles.info_detail}>
+        <div style={{ marginBottom: "5vw" }} className={styles.info_detail}>
           <img
-            style={{ width: "15px", marginRight: "10px" }}
+            style={{ width: "4vw", marginRight: "3vw" }}
             src={"/img/location.svg"}
           />
           {props.isOnModify ? (
@@ -36,14 +36,14 @@ const ActInfoCard: React.FC<ActInfoCardProps> = (props: ActInfoCardProps) => {
               defaultValue={`南昌大学玛丽女王学院报告厅`}
             ></textarea>
           ) : (
-            <span style={{ fontSize: "3.7vw", color: "#707070" }}>
+            <span style={{ fontSize: "4vw", color: "#707070" }}>
               南昌大学玛丽女王学院报告厅
             </span>
           )}
         </div>
         <div style={{ paddingBottom: "20px" }} className={styles.info_detail}>
           <img
-            style={{ width: "15px", marginRight: "10px" }}
+            style={{ width: "4vw", marginRight: "3vw" }}
             src={"/img/calender.svg"}
           />
           {props.isOnModify ? (
@@ -84,7 +84,7 @@ const ActInfoCard: React.FC<ActInfoCardProps> = (props: ActInfoCardProps) => {
               />
             </div>
           ) : (
-            <span style={{ fontSize: "3.7vw", color: "#707070" }}>
+            <span style={{ fontSize: "4vw", color: "#707070" }}>
               7/8 16:00 - 7/8 19:00
             </span>
           )}

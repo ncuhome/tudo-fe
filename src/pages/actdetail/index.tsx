@@ -11,14 +11,14 @@ const ActDetail: React.FC = () => {
       <div className={styles.cut_line}>发布者</div>
       <div className={styles.author}>
         <img
-          style={{ width: "15px", marginRight: "10px" }}
+          style={{ width: "4vw", marginRight: "3vw" }}
           src={"/img/author.svg"}
         />
-        <span style={{ fontSize: "5px" }}>玛丽女王学院</span>
+        <span style={{ fontSize: "4vw" }}>玛丽女王学院</span>
       </div>
       <div className={styles.cut_line}>简介</div>
       <div className={styles.intro_text}>
-        <p>
+        <p style={{ fontSize:"4vw" }}>
           易庆 （77级校友） 美国休斯顿卫理公会癌症中心副主任，血液癌症转
         化研究中心主任和Ralph O'Connor Centennial讲席 教授，AAAS的Fellow和Sigma
         xi的荣誉成员。 卢华（78级校友)
