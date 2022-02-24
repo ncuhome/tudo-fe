@@ -1,5 +1,5 @@
 $border: 5vw;
-$grey: #535353;
+$grey: #727272;
 $inputBgColor: rgb(248, 248, 248);
 
 @function pxToVw($px) {
@@ -14,16 +14,12 @@ $inputBgColor: rgb(248, 248, 248);
   border-radius: 18px;
 
   .card_text_title {
-    font-size: 5vw;
+    font-size: 4vw;
     padding: $border;
     display: flex;
     justify-content: center;
     align-items: center;
     .title_input {
-      resize: none;
-      border: none;
-      outline: none;
-      color: $grey;
       background-color: $inputBgColor;
       width: 100%;
       border-radius: 8px;
@@ -35,6 +31,7 @@ $inputBgColor: rgb(248, 248, 248);
     padding-left: $border;
 
     .info_detail {
+      font-size: 3vw;
       display: flex;
       align-items: center;
 
@@ -43,7 +40,7 @@ $inputBgColor: rgb(248, 248, 248);
         width: 10vw;
         padding: 8px;
         border-radius: 8px;
-        color: #727272;
+        color: $grey;
         background-color: $inputBgColor;
       }
 
@@ -52,11 +49,7 @@ $inputBgColor: rgb(248, 248, 248);
       }
 
       .location_input {
-        resize: none;
-        border: none;
-        outline: none;
         background-color: $inputBgColor;
-        color: $grey;
         width: 70vw;
         padding: 8px;
         border-radius: 8px;

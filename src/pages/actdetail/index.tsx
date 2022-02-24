@@ -12,15 +12,19 @@ const AuthorModify: React.FC<ActDetailProps> = (props: ActDetailProps) => {
   return (
     <>
       {props.isOnModify ? (
-        // <input className={styles.author_input}></input>
         <TextArea
-          style={{ "--placeholder-color": "#727272", "--font-size": "3vw" }}
+          style={{
+            "--color": "#727272",
+            "--placeholder-color": "#727272",
+            "--font-size": "3vw",
+          }}
+          placeholder="请输入举办方"
           rows={1}
           autoSize={{ minRows: 1, maxRows: 2 }}
           className={styles.author_input}
         />
       ) : (
-        <span style={{ fontSize: "4vw" }}>玛丽女王学院</span>
+        <span style={{ fontSize: "3vw" }}>玛丽女王学院</span>
       )}
     </>
   );
@@ -31,7 +35,12 @@ const IntroModify: React.FC<ActDetailProps> = (props: ActDetailProps) => {
     <>
       {props.isOnModify ? (
         <TextArea
-          style={{ "--placeholder-color": "#727272", "--font-size": "4vw" }}
+          placeholder="请输入活动简介"
+          style={{
+            "--color": "#727272",
+            "--placeholder-color": "#727272",
+            "--font-size": "4vw",
+          }}
           autoSize={{ minRows: 4, maxRows: 15 }}
           className={styles.intro_input}
         />

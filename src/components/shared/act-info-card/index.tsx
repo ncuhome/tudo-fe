@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { TextArea } from "antd-mobile";
 import { DatePicker, Toast } from "antd-mobile";
 import { format } from "date-fns";
 import styles from "./index.module.scss";
-
 interface ActInfoCardProps {
   isOnModify?: boolean;
 }
@@ -14,6 +13,23 @@ const ActInfoCard: React.FC<ActInfoCardProps> = (props: ActInfoCardProps) => {
   const [visible2, setVisible2] = useState(false);
   const [endTime, setEndTime] = useState("结束时间 -- -- -- ");
 
+  const labelRenderer = useCallback((type: string, data: number) => {
+    switch (type) {
+      case "year":
+        return data + "年";
+      case "month":
+        return data + "月";
+      case "day":
+        return data + "日";
+      case "hour":
+        return data + "时";
+      case "minute":
+        return data + "分";
+      default:
+        return data;
+    }
+  }, []);
+
   return (
     <div className={styles.card_text_div}>
       <div className={styles.card_text_title}>
@@ -23,8 +39,11 @@ const ActInfoCard: React.FC<ActInfoCardProps> = (props: ActInfoCardProps) => {
           //   defaultValue={`南昌大学百年医学教育“医教协同创新发展”高峰论坛（医学研究分论坛）`}
           // ></textarea>
           <TextArea
-
-            style={{ "--placeholder-color": "#727272", "--font-size":"3vw" }}
+            style={{
+              "--color": "#727272",
+              "--placeholder-color": "#727272",
+              "--font-size": "3vw",
+            }}
             placeholder="请输入活动名"
             rows={1}
             autoSize={{ minRows: 1, maxRows: 2 }}
@@ -43,21 +62,19 @@ const ActInfoCard: React.FC<ActInfoCardProps> = (props: ActInfoCardProps) => {
             src={"/img/location.svg"}
           />
           {props.isOnModify ? (
-            // <textarea
-            //   className={styles.location_input}
-            //   defaultValue={`南昌大学玛丽女王学院报告厅`}
-            // ></textarea>
             <TextArea
-              style={{ "--placeholder-color": "#727272", "--font-size":"3vw" }}
+              style={{
+                "--color": "#727272",
+                "--placeholder-color": "#727272",
+                "--font-size": "3vw",
+              }}
               placeholder="请输入活动地址"
               rows={1}
               autoSize={{ minRows: 1, maxRows: 2 }}
               className={styles.location_input}
             />
           ) : (
-            <span style={{ fontSize: "4vw", color: "#707070" }}>
-              南昌大学玛丽女王学院报告厅
-            </span>
+            <span style={{ fontSize: "3vw" }}>南昌大学玛丽女王学院报告厅</span>
           )}
         </div>
         <div style={{ paddingBottom: "20px" }} className={styles.info_detail}>
@@ -81,8 +98,9 @@ const ActInfoCard: React.FC<ActInfoCardProps> = (props: ActInfoCardProps) => {
                 }}
                 precision="minute"
                 onConfirm={(val) => {
-                  setStartTime(format(val, "yyyy年M月d日 k : mm"));
+                  setStartTime(format(val, "yyyy年M月d日 k:mm"));
                 }}
+                renderLabel={labelRenderer}
               />
               <span
                 onClick={() => {
@@ -98,14 +116,13 @@ const ActInfoCard: React.FC<ActInfoCardProps> = (props: ActInfoCardProps) => {
                 }}
                 precision="minute"
                 onConfirm={(val) => {
-                  setEndTime(format(val, "yyyy年M月d日 k : mm"));
+                  setEndTime(format(val, "yyyy年M月d日 k:mm"));
                 }}
+                renderLabel={labelRenderer}
               />
             </div>
           ) : (
-            <span style={{ fontSize: "4vw", color: "#707070" }}>
-              7/8 16:00 - 7/8 19:00
-            </span>
+            <span style={{ fontSize: "3vw" }}>7/8 16:00 - 7/8 19:00</span>
           )}
         </div>
       </div>
