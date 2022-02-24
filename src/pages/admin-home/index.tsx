@@ -2,8 +2,6 @@ import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import anime from "animejs";
 import AOS from "aos";
-
-// import { atom, useRecoilState } from "recoil";
 import HeadBar from "../../components/shared/head-bar";
 import ActCard from "../../components/shared/activity-card";
 import styles from "./index.module.scss";
@@ -37,7 +35,6 @@ const ActList: React.FC = () => {
 
 const AdminHome: React.FC = () => {
   const animateTargetRef = useRef<any>();
-  // const [onChose, setOnChose] = useRecoilState(choseState);
   const [tab, setTab] = useState("ing"); //ing表示当前选中即将进行标签
 
   const ClickIngActHandler = () => {
