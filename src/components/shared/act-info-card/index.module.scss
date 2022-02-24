@@ -1,6 +1,6 @@
 $border: 5vw;
 $grey: #535353;
-$inputBgColor: #d7dadd;
+$inputBgColor: rgb(248, 248, 248);
 
 @function pxToVw($px) {
   @return ($px/375) + vw;
@@ -23,7 +23,6 @@ $inputBgColor: #d7dadd;
       resize: none;
       border: none;
       outline: none;
-      font-size: 3vw;
       color: $grey;
       background-color: $inputBgColor;
       width: 100%;
@@ -40,12 +39,12 @@ $inputBgColor: #d7dadd;
       align-items: center;
 
       & > div > span {
-        font-size: 3.5vw;
-        width: 22.6vw;
-        padding: 1.5vw;
+        font-size: 3vw;
+        width: 10vw;
+        padding: 8px;
         border-radius: 8px;
-        color: #f3f3f3;
-        background-color: #d2d2d2;
+        color: #727272;
+        background-color: $inputBgColor;
       }
 
       & > div > span:last-child {
@@ -56,13 +55,10 @@ $inputBgColor: #d7dadd;
         resize: none;
         border: none;
         outline: none;
-        font-size: 3vw;
         background-color: $inputBgColor;
         color: $grey;
         width: 70vw;
-        height: 7vw;
-        padding-left: 3vw;
-        padding-top: 1vw;
+        padding: 8px;
         border-radius: 8px;
       }
     }

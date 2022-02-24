@@ -1,8 +1,30 @@
 $grey: #707070;
+$inputBgColor: rgb(248, 248, 248);
 $border: 5vw;
 
 @function pxToVw($px) {
   @return ($px/375) + vw;
+}
+
+.author_input {
+  border: none;
+  outline: none;
+  font-size: 3vw;
+  color: $grey;
+  background-color: $inputBgColor;
+  width: 83vw;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.intro_input{
+  font-size: 5vw;
+  width: 84vw;
+  border-radius: 8px;
+  padding: 3vw;
+  margin: $border;
+  color: $grey;
+  background-color: $inputBgColor;
 }
 
 .background {
@@ -11,6 +33,7 @@ $border: 5vw;
   padding: 0;
   width: 100vw;
   height: 100vh;
+  overflow: scroll;
 
   .cut_line {
     font-size: 3vw;
@@ -38,14 +61,14 @@ $border: 5vw;
   .author {
     display: flex;
     align-items: center;
+    margin: 4vw 5vw 4vw 4vw;
     margin-left: $border;
     margin-top: 4vw;
     margin-bottom: 4vw;
   }
 
   .intro_text {
-    margin-top: 4vw;
-    margin-left: $border;
-    margin-right: $border;
+    margin: $border;
+    font-size: 4vw;
   }
 }
