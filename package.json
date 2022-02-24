@@ -18,7 +18,8 @@
     "react-router": "^6.2.1",
     "react-router-dom": "6",
     "react-toastify": "^8.2.0",
-    "sass": "^1.49.8"
+    "sass": "^1.49.8",
+    "zustand": "^3.7.0"
   },
   "devDependencies": {
     "@types/animejs": "^3.1.4",
