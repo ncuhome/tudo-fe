@@ -1,19 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { ILoginRes } from "@/interface/login-res";
+import { ILoginRes, IuserInfo } from "@/interface";
 import { login } from "@/network/api/login";
 import HeadBar from "../../components/shared/head-bar";
 import styles from "./index.module.scss";
 
-interface IUserInput {
-  username: string;
-  password: string;
-}
-
 const Login: React.FC = () => {
-  const { register, handleSubmit } = useForm<IUserInput>();
-  const onSubmit: SubmitHandler<IUserInput> = (data) => login(data);
+  const { register, handleSubmit } = useForm<IuserInfo>();
+  const onSubmit: SubmitHandler<IuserInfo> = (data) => login(data);
 
   return (
     <div className={styles.background}>

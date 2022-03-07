@@ -9,6 +9,8 @@ const client = axios.create({
 client.interceptors.request.use(
   (config) => {
     console.log("请求拦截");
+    const token: string | null = localStorage.getItem("tudo-token");
+    if (config.headers && token) config.headers.token = token;
     return config;
   },
   (error) => {

@@ -1,14 +1,8 @@
-import axios, { AxiosResponse } from "axios";
 import { toastSth } from "@/App";
 import client from "../utils/request";
-import { ILoginRes } from "@/interface/login-res";
+import { ILoginRes, IuserInfo } from "@/interface/";
 
-interface userInfo {
-  username: string;
-  password: string;
-}
-
-export const login = (userInfo: userInfo) => {
+export const login = (userInfo: IuserInfo) => {
   console.log("!");
   client
     .post("/login", {
