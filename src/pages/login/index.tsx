@@ -15,7 +15,7 @@ const Login: React.FC = () => {
       <HeadBar />
 
       <form onSubmit={handleSubmit(onSubmit)} className={styles.loginForm}>
-        <div style={{ fontSize: "6.4vw" }}>登陆组织账号</div>
+        <div style={{ fontSize: "6.4vw" }}>登陆组织账号(暂用于登录普通账户)</div>
         <div style={{ marginTop: "10vh" }} className={styles.inputWrapper}>
           <input
             type={"username"}

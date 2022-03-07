@@ -1,0 +1,36 @@
+$border: 5vw;
+$themeColor: rgb(76, 165, 169);
+
+.background {
+  background: #f0f0f2;
+  width: 100vw;
+  height: 100vh;
+
+  .card_list {
+    .account_card {
+      width: 90vw;
+      height: 32vw;
+      border-radius: 15px;
+      margin: $border;
+      background-color: #ffff;
+      display: flex;
+      align-items: center;
+
+      & > img {
+        width: 11.5vw;
+        margin-left: 5.6vw;
+        margin-right: 5.6vw;
+      }
+
+      & > span {
+        font-size: 5vw;
+      }
+
+      & > span:last-child {
+        font-size: 4vw;
+        margin-left: 27vw;
+        color: #4ca8f3;
+      }
+    }
+  }
+}

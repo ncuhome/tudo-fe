@@ -23,18 +23,18 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
       : switchStylesDefault;
 
   let switchModalText: string = "";
-  let hrefTextForRole: string = "";
+  let hrefForRole: string = "";
 
   switch (props.switchModalRole) {
     case "Default":
       break;
     case "SM":
       switchModalText = "我的管理";
-      hrefTextForRole = "/my-manage";
+      hrefForRole = "/my-manage";
       break;
     case "Admin":
       switchModalText = "发布新活动";
-      hrefTextForRole = "/admin-home/new-act";
+      hrefForRole = "/admin-home/new-act";
       break;
     default:
       break;
@@ -79,7 +79,7 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
         {props.switchModalRole === "Default" ? null : (
           <>
             <div className={styles.cutline}></div>
-            <Link style={{ color: "unset" }} to={hrefTextForRole}>
+            <Link style={{ color: "unset" }} to={hrefForRole}>
               <div className={styles.switchModal}>{switchModalText}</div>
             </Link>
           </>
@@ -88,7 +88,7 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
       <Modal
         isOpen={centerModal}
         ariaHideApp={false}
-        style={customCenterStyles} //中间打开有异常显示
+        style={customCenterStyles}
         onRequestClose={() => setCenterModal(false)}
         shouldCloseOnOverlayClick={true}
       >
