@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 import logo from "./logo.svg";
 import "./App.css";
 import HomePage from "./pages/home";
@@ -9,9 +11,32 @@ import HistoryAct from "./pages/end-act";
 import AdminHome from "./pages/admin-home";
 import NewAct from "./pages/new-act";
 
+export const toastSth = (toastMode:any, toastText: any, toastSetting: any) => {
+  switch (toastMode) {
+    case "success":
+      toast.success(toastText,toastSetting)
+      break;
+    case "warning":
+      toast.warning(toastText,toastSetting)
+      break;
+    case "error":
+      toast.error(toastText,toastSetting)
+      break;
+    case "info":
+      toast.info(toastText,toastSetting)
+      break;
+    default:
+      break;
+  }
+};
+
 const App: React.FC = () => {
   return (
     <>
+      <ToastContainer
+        position="top-center" 
+        hideProgressBar={true}
+      />
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/login" element={<Login />}></Route>

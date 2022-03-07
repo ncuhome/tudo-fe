@@ -13,10 +13,8 @@ interface IUserInput {
 
 const Login: React.FC = () => {
   const { register, handleSubmit } = useForm<IUserInput>();
-  const onSubmit: SubmitHandler<IUserInput> = (data) => {
-    login(data)
-  };
-  
+  const onSubmit: SubmitHandler<IUserInput> = (data) => login(data);
+
   return (
     <div className={styles.background}>
       <HeadBar />

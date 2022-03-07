@@ -1,4 +1,6 @@
+import { toastSth } from "@/App";
 import axios, { AxiosResponse } from "axios";
+
 const client = axios.create({
   baseURL: "http://tudo-api-test.ncuos.com",
   timeout: 10000,
@@ -16,10 +18,13 @@ client.interceptors.request.use(
 
 client.interceptors.response.use(
   (response) => {
-    console.log("响应拦截")
+    console.log("成功响应拦截");
     return response;
   },
   (error) => {
+    console.log("错误响应拦截");
+    console.log(error.response);
+    toastSth("error", error.response.data.message, { theme: "colored" });
     return Promise.reject(error);
   }
 );
