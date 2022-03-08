@@ -21,7 +21,7 @@ client.interceptors.request.use(
 client.interceptors.response.use(
   (response) => {
     console.log("成功响应拦截");
-    return response;
+    return response.data;
   },
   (error) => {
     console.log("错误响应拦截");
