@@ -9,6 +9,7 @@ import HistoryAct from "./pages/end-act";
 import AdminHome from "./pages/admin-home";
 import NewAct from "./pages/new-act";
 import MyManage from "./pages/my-manage";
+import AmendTeam from "./pages/amend-team";
 import { ItoastSth } from "./interface";
 import logo from "./logo.svg";
 import "./App.css";
@@ -44,6 +45,7 @@ const App: React.FC = () => {
         <Route path="/admin-home" element={<AdminHome />}></Route>
         <Route path="/admin-home/new-act" element={<NewAct />}></Route>
         <Route path="/my-manage" element={<MyManage />}></Route>
+        <Route path="/my-manage/amend-team" element={<AmendTeam/>}></Route>
       </Routes>
     </>
   );

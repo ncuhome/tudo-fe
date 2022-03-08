@@ -12,7 +12,7 @@ const NewAct: React.FC = () => {
           <div>发布新活动</div>
           <span>发布</span>
         </div>
-        <ActCard/>
+        <ActCard />
       </div>
     </div>
   );

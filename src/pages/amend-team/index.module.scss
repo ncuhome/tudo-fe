@@ -1,0 +1,110 @@
+$border: 5vw;
+$themeColor: rgb(76, 165, 169);
+@function pxToVw($px) {
+  @return ($px/375) * 100 + vw;
+}
+
+.background {
+  background: #f0f0f2;
+  width: 100vw;
+  height: 100vh;
+
+  .team_info_card {
+    margin: $border;
+    background-color: #ffff;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .team_text {
+      margin: $border;
+      margin-bottom: 0;
+
+      & > div:first-child {
+        font-size: 5vw;
+        font-weight: bold;
+      }
+
+      & > div:last-child {
+        color: #00000080;
+      }
+    }
+
+    .team_info_form {
+      margin: $border;
+      display: flex;
+      flex-direction: column;
+
+      .logo_form {
+        display: flex;
+        align-items: center;
+        margin-bottom: pxToVw(15);
+        & > span {
+          font-size: 4vw;
+          margin-right: pxToVw(8);
+        }
+
+        & > div {
+          height: 3.8vw;
+          border-right: solid 1px rgba(0, 0, 0, 0.3);
+        }
+
+        & > img {
+          margin-left: pxToVw(11);
+          width: pxToVw(43);
+        }
+      }
+
+      .password_form {
+        display: flex;
+        align-items: center;
+        margin-bottom: pxToVw(15);
+        & > span {
+          font-size: 4vw;
+          margin-right: pxToVw(8);
+        }
+
+        & > div {
+          height: 3.8vw;
+          border-right: solid 1px rgba(0, 0, 0, 0.3);
+        }
+
+        & > input {
+          font-size: 4vw;
+          margin-left: pxToVw(11);
+          padding: 8px;
+          border-radius: 16px;
+          border: none;
+          outline: none;
+          background-color: #f9f9f9;
+        }
+      }
+
+      .form_btn {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+
+        & > a > div {
+          margin-right: pxToVw(14);
+          width: pxToVw(50);
+          height: pxToVw(20);
+          background-color: #de8383;
+          border-radius: 16px;
+          text-align: center;
+          color: #ffff;
+        }
+
+        & > div {
+          width: pxToVw(50);
+          height: pxToVw(20);
+          background-color: #439ef1;
+          border-radius: 16px;
+          text-align: center;
+          color: #ffff;
+        }
+      }
+    }
+  }
+}

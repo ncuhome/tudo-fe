@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import HeadBar from "@/components/shared/head-bar";
 import styles from "./index.module.scss";
 
@@ -13,7 +14,9 @@ const MyManage: React.FC = () => {
           <img src={"/img/img.svg"} />
           <span>家园工作室</span>
           {/* <span>{isActivate ? "" }</span> */}
-          {isActivate ? <span>编辑</span> : <span>激活</span>}
+          <Link to="/my-manage/amend-team">
+            {isActivate ? <span>编辑</span> : <span>激活</span>}
+          </Link>
         </div>
       </div>
     </div>
