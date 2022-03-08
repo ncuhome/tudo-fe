@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import HeadBar from "../../components/shared/head-bar";
 import ActCard from "../../components/shared/activity-card";
 import styles from "./index.module.scss";
+import { checkToken } from "@/network/api/check-token";
+import AdminHome from "../admin-home";
 import "aos/dist/aos.css";
 
 const ActList: React.FC = () => {
@@ -33,7 +35,8 @@ const ActList: React.FC = () => {
   );
 };
 
-const HomePage: React.FC = () => {
+const NormalHomePage: React.FC = (props) => {
+  const userRole: string | null = localStorage.getItem("user-role");
   const animateTargetRef = useRef<any>();
   const [onChose, setOnChose] = useState(true);
   const [tab, setTab] = useState("ing"); //ing表示当前选中正在进行标签
@@ -66,7 +69,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className={styles.background}>
-      <HeadBar profileDisplay={true} switchModalRole={"SM"} />
+      <HeadBar profileDisplay={true} switchModalRole={userRole} />
       <div className={styles.act_tab}>
         {onChose ? (
           <>
@@ -119,6 +122,21 @@ const HomePage: React.FC = () => {
       <ActList />
     </div>
   );
+};
+
+const HomePage: React.FC = () => {
+  useEffect(() => {
+    const freshToken = async () => {
+      const role = await checkToken();
+      localStorage.setItem("user-role", role);
+    };
+    freshToken();
+
+    return;
+  });
+  const userRole: string | null = localStorage.getItem("user-role");
+
+  return userRole === "team" ? <AdminHome /> : <NormalHomePage />;
 };
 
 export default HomePage;

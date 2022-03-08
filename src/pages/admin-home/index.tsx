@@ -6,6 +6,7 @@ import HeadBar from "../../components/shared/head-bar";
 import ActCard from "../../components/shared/activity-card";
 import styles from "./index.module.scss";
 import "aos/dist/aos.css";
+import { useUserRole } from "@/store/user-role";
 
 const ActList: React.FC = () => {
   useEffect(() => {
@@ -34,6 +35,7 @@ const ActList: React.FC = () => {
 };
 
 const AdminHome: React.FC = () => {
+  const userRole: string | null = localStorage.getItem("user-role");
   const animateTargetRef = useRef<any>();
   const [tab, setTab] = useState("ing"); //ing表示当前选中即将进行标签
 
@@ -65,7 +67,7 @@ const AdminHome: React.FC = () => {
 
   return (
     <div className={styles.background}>
-      <HeadBar profileDisplay={true} switchModalRole={"Admin"} />
+      <HeadBar profileDisplay={true} switchModalRole={userRole} />
       <div className={styles.tab_wrapper}>
         <div className={styles.process_tab}>
           <div ref={animateTargetRef} className={styles.process_button} />
