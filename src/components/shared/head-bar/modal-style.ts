@@ -1,4 +1,6 @@
-export const switchStylesDefault = {
+import Modal from "react-modal";
+
+export const switchStylesDefault: Modal.Styles = {
   overlay: {
     backgroundColor: "0",
     top: "15vw",
@@ -17,7 +19,7 @@ export const switchStylesDefault = {
   },
 };
 
-export const switchStylesComplex = {
+export const switchStylesComplex: Modal.Styles = {
   overlay: {
     backgroundColor: "0",
     top: "15vw",
@@ -36,7 +38,7 @@ export const switchStylesComplex = {
   },
 };
 
-export const customCenterStyles = {
+export const customCenterStyles: Modal.Styles = {
   overlay: {
     backgroundColor: "rgba(0, 0 ,0, 0.6 )",
   },
