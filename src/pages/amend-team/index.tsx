@@ -24,7 +24,7 @@ const AmendTeam: React.FC = () => {
             <input type={"password"} />
           </div>
           <div className={styles.form_btn}>
-            <Link to="/my-manage">
+            <Link to="/my-manage" replace>
               <div>取消</div>
             </Link>
             <div>确定</div>

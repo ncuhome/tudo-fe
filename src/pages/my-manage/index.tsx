@@ -14,7 +14,7 @@ const MyManage: React.FC = () => {
           <img src={"/img/img.svg"} />
           <span>家园工作室</span>
           {/* <span>{isActivate ? "" }</span> */}
-          <Link to="/my-manage/amend-team">
+          <Link to="/my-manage/amend-team" replace>
             {isActivate ? <span>编辑</span> : <span>激活</span>}
           </Link>
         </div>
