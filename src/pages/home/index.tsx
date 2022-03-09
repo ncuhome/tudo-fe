@@ -6,7 +6,7 @@ import HeadBar from "../../components/shared/head-bar";
 import ActCard from "../../components/shared/activity-card";
 import styles from "./index.module.scss";
 import { checkToken } from "@/network/api/check-token";
-import AdminHome from "../admin-home";
+import TeamHome from "../team-home";
 import "aos/dist/aos.css";
 
 const ActList: React.FC = () => {
@@ -136,7 +136,7 @@ const HomePage: React.FC = () => {
   });
   const userRole: string | null = localStorage.getItem("user-role");
 
-  return userRole === "team" ? <AdminHome /> : <NormalHomePage />;
+  return userRole === "team" ? <TeamHome /> : <NormalHomePage />;
 };
 
 export default HomePage;

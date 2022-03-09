@@ -34,7 +34,7 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
       break;
     case "team":
       switchModalText = "发布新活动";
-      hrefForRole = "/admin-home/new-act";
+      hrefForRole = "/team-home/new-act";
       break;
     default:
       break;

@@ -34,7 +34,7 @@ const ActList: React.FC = () => {
   );
 };
 
-const AdminHome: React.FC = () => {
+const TeamHome: React.FC = () => {
   const userRole: string | null = localStorage.getItem("user-role");
   const animateTargetRef = useRef<any>();
   const [tab, setTab] = useState("ing"); //ing表示当前选中即将进行标签
@@ -94,4 +94,4 @@ const AdminHome: React.FC = () => {
   );
 };
 
-export default AdminHome;
+export default TeamHome;
