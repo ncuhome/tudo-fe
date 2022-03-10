@@ -34,10 +34,6 @@ const ActInfoCard: React.FC<ActInfoCardProps> = (props: ActInfoCardProps) => {
     <div className={styles.card_text_div}>
       <div className={styles.card_text_title}>
         {props.isOnModify ? (
-          // <textarea
-
-          //   defaultValue={`南昌大学百年医学教育“医教协同创新发展”高峰论坛（医学研究分论坛）`}
-          // ></textarea>
           <TextArea
             style={{
               "--color": "#727272",
@@ -77,7 +73,7 @@ const ActInfoCard: React.FC<ActInfoCardProps> = (props: ActInfoCardProps) => {
             <span style={{ fontSize: "3vw" }}>南昌大学玛丽女王学院报告厅</span>
           )}
         </div>
-        <div style={{ paddingBottom: "20px" }} className={styles.info_detail}>
+        <div className={styles.info_detail}>
           <img
             style={{ width: "4vw", marginRight: "3vw" }}
             src={"/img/calender.svg"}

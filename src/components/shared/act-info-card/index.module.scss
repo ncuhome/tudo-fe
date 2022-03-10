@@ -15,6 +15,7 @@ $inputBgColor: rgb(248, 248, 248);
 
   .card_text_title {
     font-size: 4vw;
+    width: 80vw;
     padding: $border;
     display: flex;
     justify-content: center;
@@ -28,7 +29,8 @@ $inputBgColor: rgb(248, 248, 248);
   }
 
   .card_text_info {
-    padding-left: $border;
+    padding: 0 $border $border $border;
+    height: auto;
 
     .info_detail {
       font-size: 3vw;
@@ -50,7 +52,7 @@ $inputBgColor: rgb(248, 248, 248);
 
       .location_input {
         background-color: $inputBgColor;
-        width: 70vw;
+        width: 73vw;
         padding: 8px;
         border-radius: 8px;
       }
