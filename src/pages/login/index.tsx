@@ -8,7 +8,14 @@ import HeadBar from "../../components/shared/head-bar";
 import styles from "./index.module.scss";
 
 const Login: React.FC = () => {
-  // const { addRole } = useUserRole();
+  // const { addRole } = useUserRole();rea
+  let titleText
+  if(!localStorage.getItem("user-role")){
+    titleText = "使用前请登录云家园账号"
+  }else{
+    titleText = "登录云家园账户或组织账号"
+  }
+
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<IuserInfo>();
   const onSubmit: SubmitHandler<IuserInfo> = async (data) => {
@@ -22,7 +29,7 @@ const Login: React.FC = () => {
     <div className={styles.background}>
       <HeadBar />
       <form onSubmit={handleSubmit(onSubmit)} className={styles.loginForm}>
-        <div style={{ fontSize: "6.4vw" }}>使用前请登录云家园账号</div>
+        <div style={{ fontSize: "6.4vw" }}>{titleText}</div>
         <div style={{ marginTop: "10vh" }} className={styles.inputWrapper}>
           <input
             type={"username"}
