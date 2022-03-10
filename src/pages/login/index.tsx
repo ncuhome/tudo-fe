@@ -22,7 +22,7 @@ const Login: React.FC = () => {
 
       <form onSubmit={handleSubmit(onSubmit)} className={styles.loginForm}>
         <div style={{ fontSize: "6.4vw" }}>
-          登陆组织账号(暂用于登录普通账户)
+          使用前请登录云家园账号
         </div>
         <div style={{ marginTop: "10vh" }} className={styles.inputWrapper}>
           <input
@@ -31,7 +31,7 @@ const Login: React.FC = () => {
             className={styles.input}
           ></input>
           <label className={styles.inputLabel}>
-            <span>组织名</span>
+            <span>用户名</span>
           </label>
         </div>
         <div style={{ marginTop: "6vh" }} className={styles.inputWrapper}>
