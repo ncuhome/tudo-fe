@@ -1,21 +1,42 @@
-import React from 'react'
-import styles from './index.module.scss'
+import { IActCardProps } from "@/interface";
+import React from "react";
+import styles from "./index.module.scss";
 
-const ActCard: React.FC = () => {
+const ActCard: React.FC<IActCardProps> = (props: IActCardProps) => {
   return (
-    <div className={styles.cardBox} >
+    <div className={styles.cardBox}>
       <div className={styles.cardDate}>
-        <div style={{ marginBottom: "10px", width: "100%", textAlign: "center", fontWeight: "bold", color: "#fff", whiteSpace: "nowrap" }}>周四</div>
-        <div style={{ width: "100%", textAlign: "center", fontWeight: "bold", color: "rgb(12,167,170)" }}>7/8</div>
-      </div>
-      <div className={styles.cardInfo}>
-        <div className={styles.cardInfo_name}>ffffffffffffffffffffffffffff</div>
-        <div className={styles.cardInfo_date}>
-          <img src={"/img/calender.svg"} />
-          <span>7/8 16:00 -- 7/8 16:00</span>
+        <div
+          style={{
+            marginBottom: "10px",
+            width: "100%",
+            textAlign: "center",
+            fontWeight: "bold",
+            color: "#fff",
+            whiteSpace: "nowrap",
+          }}
+        >
+          周四
+        </div>
+        <div
+          style={{
+            width: "100%",
+            textAlign: "center",
+            fontWeight: "bold",
+            color: "rgb(12,167,170)",
+          }}
+        >
+          7/8
         </div>
       </div>
-    </div >
-  )
-}
+      <div className={styles.cardInfo}>
+        <div className={styles.cardInfo_name}>{props.title}</div>
+        <div className={styles.cardInfo_date}>
+          <img src={"/img/calender.svg"} />
+          <span>{`${props.start_time} -- ${props.end_time}` }</span>
+        </div>
+      </div>
+    </div>
+  );
+};
 export default ActCard;

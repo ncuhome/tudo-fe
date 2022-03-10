@@ -7,16 +7,31 @@ import ActCard from "@/components/shared/activity-card";
 import styles from "./index.module.scss";
 import { checkToken } from "@/network/api/check-token";
 import "aos/dist/aos.css";
-import { getRecommendActList } from "@/network/api/get-recommend-act";
+import { useActsState } from "@/store/useActsState";
+import { IActlistProps, IActsListAct } from "@/interface";
 
-const ActList: React.FC = () => {
+const ActList: React.FC<IActlistProps> = (props: IActlistProps) => {
   useEffect(() => {
     AOS.init();
   });
 
   return (
     <>
-      <div data-aos="fade-up">
+      {props.actsList.map((item: IActsListAct) => {
+        return (
+          <div key={item.id} data-aos="fade-up">
+            <Link style={{ color: "unset" }} to="/act-detail">
+              <ActCard
+                date={item.start_time}
+                start_time={item.start_time}
+                end_time={item.EndTime}
+                title={item.title}
+              />
+            </Link>
+          </div>
+        );
+      })}
+      {/* <div data-aos="fade-up">
         <Link style={{ color: "unset" }} to="/act-detail">
           <ActCard />
         </Link>
@@ -30,19 +45,21 @@ const ActList: React.FC = () => {
         <Link style={{ color: "unset" }} to="/act-detail">
           <ActCard />
         </Link>
-      </div>
+      </div> */}
     </>
   );
 };
 
 const NormalHomePage: React.FC = (props) => {
+  const { ActsList, fetchRecommendList } = useActsState();
+
   useEffect(() => {
     try {
-      getRecommendActList();
+      fetchRecommendList();
     } catch (error) {
       console.log(error);
     }
-  });
+  }, []);
 
   const userRole: string | null = localStorage.getItem("user-role");
   const animateTargetRef = useRef<any>();
@@ -127,7 +144,7 @@ const NormalHomePage: React.FC = (props) => {
           </div>
         )}
       </div>
-      <ActList />
+      <ActList actsList={ActsList} />
     </div>
   );
 };
