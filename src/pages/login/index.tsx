@@ -8,21 +8,23 @@ import HeadBar from "../../components/shared/head-bar";
 import styles from "./index.module.scss";
 
 const Login: React.FC = () => {
-  // const { addRole } = useUserRole();rea
-  let titleText
-  if(!localStorage.getItem("user-role")){
-    titleText = "使用前请登录云家园账号"
-  }else{
-    titleText = "登录云家园账户或组织账号"
+  // const { addRole } = useUserRole();
+  let titleText;
+  if (!localStorage.getItem("user-role")) {
+    titleText = "使用前请登录云家园账号";
+  } else {
+    titleText = "登录云家园账户或组织账号";
   }
 
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<IuserInfo>();
   const onSubmit: SubmitHandler<IuserInfo> = async (data) => {
-    const role: string = await login(data);
-    localStorage.setItem("user-role", role);
-    navigate("/", { replace: true });
-    console.log("fc " + role);
+    try {
+      await login(data);
+      navigate("/", { replace: true });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
