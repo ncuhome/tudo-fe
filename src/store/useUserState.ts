@@ -5,8 +5,8 @@ import { combine } from "zustand/middleware"
 export const useUserState = create(
   combine(
     {
-      token: "",
-      role: "",
+      token: localStorage.getItem("tudo-token"),
+      role: localStorage.getItem("user-role"),
       username: ""
     },
     set => ({
@@ -18,7 +18,8 @@ export const useUserState = create(
         if(token === null) {
           return null
         }else {
-          
+          //获取用户信息 等接口ing
+          set({role: localStorage.getItem("user-role")})
         }
       },
     })

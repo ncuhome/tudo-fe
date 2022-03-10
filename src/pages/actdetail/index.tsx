@@ -3,6 +3,7 @@ import { TextArea } from "antd-mobile";
 import ActInfoCard from "../../components/shared/act-info-card";
 import HeadBar from "../../components/shared/head-bar";
 import styles from "./index.module.scss";
+import { useUserState } from "@/store/useUserState";
 
 interface ActDetailProps {
   isOnModify?: boolean;
@@ -62,21 +63,26 @@ const IntroModify: React.FC<ActDetailProps> = (props: ActDetailProps) => {
   );
 };
 
-const ActDetail: React.FC<ActDetailProps> = (props: ActDetailProps) => {
+const ActDetail: React.FC = () => {
+  console.log(useUserState.subscribe())
+  const canModify =
+    useUserState((state) => state.role) === "team" ? true : false;
+  console.log("canmodify" + canModify);
+
   return (
     <div className={styles.background}>
       <HeadBar />
-      <ActInfoCard isOnModify={true} />
+      <ActInfoCard isOnModify={canModify} />
       <div className={styles.cut_line}>发布者</div>
       <div className={styles.author}>
         <img
           style={{ width: "4vw", marginRight: "3vw" }}
           src={"/img/author.svg"}
         />
-        <AuthorModify isOnModify={true} />
+        <AuthorModify isOnModify={canModify} />
       </div>
       <div className={styles.cut_line}>简介</div>
-      <IntroModify isOnModify={true} />
+      <IntroModify isOnModify={canModify} />
     </div>
   );
 };

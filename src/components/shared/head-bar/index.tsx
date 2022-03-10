@@ -18,10 +18,9 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
   const [centerModal, setCenterModal] = React.useState(false);
 
   const switchStyles =
-    props.switchModalRole === "admin" || "team"
-      ? switchStylesComplex
-      : switchStylesDefault;
-
+    props.switchModalRole === "user"
+      ? switchStylesDefault
+      : switchStylesComplex;
   let switchModalText: string = "";
   let hrefForRole: string = "";
 
@@ -41,7 +40,7 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
   }
 
   const controlModal = () => {
-    console.log(props.switchModalRole)
+    console.log(props.switchModalRole);
     setIsOpen(!modalIsOpen);
   };
 
