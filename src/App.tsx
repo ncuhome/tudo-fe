@@ -12,7 +12,6 @@ import HomePage from "./pages/home";
 import Login from "./pages/login";
 import ActDetail from "./pages/actdetail";
 import HistoryAct from "./pages/end-act";
-import TeamHome from "./pages/team-home";
 import NewAct from "./pages/new-act";
 import MyManage from "./pages/my-manage";
 import AmendTeam from "./pages/amend-team";
@@ -35,7 +34,7 @@ const App: React.FC = () => {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/act-detail" element={<ActDetail />}></Route>
         <Route path="/history-act" element={<HistoryAct />}></Route>
-        <Route path="/team-home" element={<TeamHome />}></Route>
+        {/* <Route path="/team-home" element={<TeamHome />}></Route> */}
         <Route path="/team-home/new-act" element={<NewAct />}></Route>
         <Route path="/my-manage" element={<MyManage />}></Route>
         <Route path="/my-manage/amend-team" element={<AmendTeam />}></Route>

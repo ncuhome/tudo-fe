@@ -5,15 +5,15 @@ import { ILoginRes, IuserInfo } from "@/interface/";
 
 export const login = async (userInfo: IuserInfo) => {
   try {
-    const res =  await client.post("/login", {
+    const res = await client.post("/login", {
       username: userInfo.username,
       password: userInfo.password,
     });
-    console.log(res)
+    toastSth("success", "登陆成功", { theme: "colored" });
     localStorage.setItem("tudo-token", res.data.token); //设置token
-    const role = checkToken()
-    return role
+    const role = checkToken();
+    return role;
   } catch (error) {
-    console.log("error")
+    console.log("error");
   }
 };

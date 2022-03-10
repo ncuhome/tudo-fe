@@ -20,7 +20,7 @@ client.interceptors.request.use(
 
 client.interceptors.response.use(
   (response) => {
-    toastSth("success", response.data.message, { theme: "colored" });
+    // toastSth("success", response.data.message, { theme: "colored" });
     console.log("成功响应拦截");
     return response.data;
   },

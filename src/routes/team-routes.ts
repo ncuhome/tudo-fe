@@ -1,5 +1,5 @@
 import NewAct from "@/pages/new-act";
-import TeamHome from "@/pages/team-home";
+import TeamHome from "@/pages/home/components/team-home";
 
 export const teamRoutes = [
   {
