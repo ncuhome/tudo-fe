@@ -7,6 +7,7 @@ import ActCard from "@/components/shared/activity-card";
 import styles from "./index.module.scss";
 import { checkToken } from "@/network/api/check-token";
 import "aos/dist/aos.css";
+import { getRecommendActList } from "@/network/api/get-recommend-act";
 
 const ActList: React.FC = () => {
   useEffect(() => {
@@ -35,6 +36,14 @@ const ActList: React.FC = () => {
 };
 
 const NormalHomePage: React.FC = (props) => {
+  useEffect(() => {
+    try {
+      getRecommendActList();
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
   const userRole: string | null = localStorage.getItem("user-role");
   const animateTargetRef = useRef<any>();
   const [onChose, setOnChose] = useState(true);
@@ -123,4 +132,4 @@ const NormalHomePage: React.FC = (props) => {
   );
 };
 
-export default NormalHomePage
+export default NormalHomePage;
