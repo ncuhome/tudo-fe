@@ -46,7 +46,6 @@ const App: React.FC = () => {
 const RequireAuth = ({ children }: { children: JSX.Element }) => {
   const local_role = localStorage.getItem("user-role");
   let location = useLocation();
-
   if (!local_role) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }

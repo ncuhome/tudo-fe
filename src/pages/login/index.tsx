@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { ILoginRes, IuserInfo } from "@/interface";
+import { ILoginRes, IUserInfo } from "@/interface";
 // import { useUserRole } from "@/store/user-role";
 import { login } from "@/network/api/login";
 import HeadBar from "../../components/shared/head-bar";
@@ -17,8 +17,8 @@ const Login: React.FC = () => {
   }
 
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<IuserInfo>();
-  const onSubmit: SubmitHandler<IuserInfo> = async (data) => {
+  const { register, handleSubmit } = useForm<IUserInfo>();
+  const onSubmit: SubmitHandler<IUserInfo> = async (data) => {
     try {
       await login(data);
       navigate("/", { replace: true });

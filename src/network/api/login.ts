@@ -1,9 +1,9 @@
 import { toastSth } from "@/App";
 import { checkToken } from "./check-token";
 import client from "../utils/request";
-import { ILoginRes, IuserInfo } from "@/interface/";
+import { ILoginRes, IUserInfo } from "@/interface/";
 
-export const login = async (userInfo: IuserInfo) => {
+export const login = async (userInfo: IUserInfo) => {
   const res = await client.post("/login", {
     username: userInfo.username,
     password: userInfo.password,
@@ -11,10 +11,9 @@ export const login = async (userInfo: IuserInfo) => {
   toastSth("success", "登陆成功", { theme: "colored" });
   localStorage.setItem("tudo-token", res.data.token); //设置token
   try{
-    const role: any = checkToken();
+    const role: any = await checkToken();
     localStorage.setItem("user-role", role); //设置角色
   }catch(error){
     console.log(error)
   }
-  // return role;
 };
