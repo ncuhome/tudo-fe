@@ -1,3 +1,5 @@
+$grey: #727272;
+$inputBgColor: rgb(248, 248, 248);
 $border: 5vw;
 
 .background {
@@ -5,23 +7,76 @@ $border: 5vw;
   width: 100vw;
   height: 100vh;
 
-  .new_act_form{
+  .new_act_form {
     margin-top: 5vw;
-    .form_title{
+    .form_title {
       margin-left: $border;
       margin-right: $border;
       display: flex;
       justify-content: space-between;
       align-items: center;
 
-      div{
+      div {
         font-size: 6.4vw;
       }
 
-      span{
+      span {
         font-size: 5vw;
         color: #4e87e1;
       }
+    }
+
+    .cut_line {
+      font-size: 3vw;
+      color: $grey;
+      display: flex;
+      align-items: center;
+    }
+    .cut_line::before {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: $grey;
+      margin-left: 5vw;
+      margin-right: 2vw;
+    }
+    .cut_line::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: $grey;
+      margin-left: 2vw;
+      margin-right: 5vw;
+    }
+
+    .author {
+      display: flex;
+      align-items: center;
+      margin: 4vw 5vw 4vw 4vw;
+      margin-left: $border;
+      margin-top: 4vw;
+      margin-bottom: 4vw;
+
+      .author_input {
+        border: none;
+        outline: none;
+        font-size: 3vw;
+        color: $grey;
+        background-color: $inputBgColor;
+        width: 83vw;
+        border-radius: 8px;
+        padding: 8px;
+      }
+    }
+
+    .intro_input {
+      font-size: 4vw;
+      width: 84vw;
+      border-radius: 8px;
+      padding: 3vw;
+      margin: $border;
+      color: $grey;
+      background-color: $inputBgColor;
     }
   }
 }
