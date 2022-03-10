@@ -17,7 +17,7 @@ $border: 5vw;
   padding: 8px;
 }
 
-.intro_input{
+.intro_input {
   font-size: 4vw;
   width: 84vw;
   border-radius: 8px;
@@ -34,6 +34,18 @@ $border: 5vw;
   width: 100vw;
   height: 100vh;
   overflow: scroll;
+
+  .edit_bar {
+    width: 90vw;
+    height: 15vw;
+    font-size: 4vw;
+    margin-left: $border;
+    margin-right: $border;
+    margin-top: -15vw;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
 
   .cut_line {
     font-size: 3vw;

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TextArea } from "antd-mobile";
 import ActInfoCard from "../../components/shared/act-info-card";
 import HeadBar from "../../components/shared/head-bar";
@@ -64,28 +64,57 @@ const IntroModify: React.FC<ActDetailProps> = (props: ActDetailProps) => {
 };
 
 const ActDetail: React.FC = () => {
+  const [onEdit, setOnEdit] = useState(false);
   const { role, fetchUserInfo } = useUserState();
   useEffect(() => {
     fetchUserInfo();
     return;
-  },[]);
-
+  }, []);
   const canModify = role === "team" ? true : false;
+
+  const cancelActHandler = () => {
+    alert("!!!");
+  };
+
+  const finshEditHandler = () => {
+    setOnEdit(false);
+  };
 
   return (
     <div className={styles.background}>
       <HeadBar />
-      <ActInfoCard isOnModify={canModify} />
+      {canModify ? (
+        <div className={styles.edit_bar}>
+          {onEdit ? (
+            <>
+              <span style={{ color: "red" }} onClick={() => cancelActHandler()}>
+                取消活动
+              </span>
+              <span
+                style={{ color: "#4CA8F3", marginLeft: "3vw" }}
+                onClick={() => finshEditHandler()}
+              >
+                完成
+              </span>
+            </>
+          ) : (
+            <span style={{ color: "#4CA8F3" }} onClick={() => setOnEdit(true)}>
+              编辑活动
+            </span>
+          )}
+        </div>
+      ) : null}
+      <ActInfoCard isOnModify={onEdit} />
       <div className={styles.cut_line}>发布者</div>
       <div className={styles.author}>
         <img
           style={{ width: "4vw", marginRight: "3vw" }}
           src={"/img/author.svg"}
         />
-        <AuthorModify isOnModify={canModify} />
+        <AuthorModify isOnModify={onEdit} />
       </div>
       <div className={styles.cut_line}>简介</div>
-      <IntroModify isOnModify={canModify} />
+      <IntroModify isOnModify={onEdit} />
     </div>
   );
 };
