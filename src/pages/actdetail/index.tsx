@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { TextArea } from "antd-mobile";
 import ActInfoCard from "../../components/shared/act-info-card";
 import HeadBar from "../../components/shared/head-bar";
@@ -64,10 +64,13 @@ const IntroModify: React.FC<ActDetailProps> = (props: ActDetailProps) => {
 };
 
 const ActDetail: React.FC = () => {
-  console.log(useUserState.subscribe())
-  const canModify =
-    useUserState((state) => state.role) === "team" ? true : false;
-  console.log("canmodify" + canModify);
+  const { role, fetchUserInfo } = useUserState();
+  useEffect(() => {
+    fetchUserInfo();
+    return;
+  },[]);
+
+  const canModify = role === "team" ? true : false;
 
   return (
     <div className={styles.background}>
