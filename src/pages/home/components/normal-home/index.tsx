@@ -4,58 +4,22 @@ import AOS from "aos";
 import { Link } from "react-router-dom";
 import HeadBar from "@/components/shared/head-bar";
 import ActCard from "@/components/shared/activity-card";
+import ActList from "@/components/shared/act-list";
 import styles from "./index.module.scss";
 import { checkToken } from "@/network/api/check-token";
-import "aos/dist/aos.css";
+import { useUserState } from "@/store/useUserState";
 import { useActsState } from "@/store/useActsState";
 import { IActlistProps, IActsListAct } from "@/interface";
-
-const ActList: React.FC<IActlistProps> = (props: IActlistProps) => {
-  useEffect(() => {
-    AOS.init();
-  });
-
-  return (
-    <>
-      {props.actsList.map((item: IActsListAct) => {
-        return (
-          <div key={item.id} data-aos="fade-up">
-            <Link style={{ color: "unset" }} to="/act-detail">
-              <ActCard
-                date={item.start_time}
-                start_time={item.start_time}
-                end_time={item.EndTime}
-                title={item.title}
-              />
-            </Link>
-          </div>
-        );
-      })}
-      {/* <div data-aos="fade-up">
-        <Link style={{ color: "unset" }} to="/act-detail">
-          <ActCard />
-        </Link>
-      </div>
-      <div data-aos="fade-up">
-        <Link style={{ color: "unset" }} to="/act-detail">
-          <ActCard />
-        </Link>
-      </div>
-      <div data-aos="fade-up">
-        <Link style={{ color: "unset" }} to="/act-detail">
-          <ActCard />
-        </Link>
-      </div> */}
-    </>
-  );
-};
+import "aos/dist/aos.css";
 
 const NormalHomePage: React.FC = (props) => {
   const { ActsList, fetchRecommendList } = useActsState();
+  const { nickname, fetchUserInfo } = useUserState();
 
   useEffect(() => {
     try {
       fetchRecommendList();
+      fetchUserInfo();
     } catch (error) {
       console.log(error);
     }
@@ -94,7 +58,7 @@ const NormalHomePage: React.FC = (props) => {
 
   return (
     <div className={styles.background}>
-      <HeadBar profileDisplay={true} switchModalRole={userRole} />
+      <HeadBar profileDisplay={true} switchModalRole={userRole} nickName={nickname}/>
       <div className={styles.act_tab}>
         {onChose ? (
           <>

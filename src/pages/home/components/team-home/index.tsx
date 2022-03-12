@@ -2,42 +2,23 @@ import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import anime from "animejs";
 import AOS from "aos";
+import { useUserState } from "@/store/useUserState";
 import HeadBar from "../../../../components/shared/head-bar";
 import ActCard from "../../../../components/shared/activity-card";
+import ActList from "@/components/shared/act-list";
 import styles from "./index.module.scss";
 import "aos/dist/aos.css";
-import { useUserRole } from "@/store/user-role";
-
-const ActList: React.FC = () => {
-  useEffect(() => {
-    AOS.init();
-  });
-
-  return (
-    <>
-      <div data-aos="fade-up">
-        <Link style={{ color: "unset" }} to="/act-detail">
-          <ActCard />
-        </Link>
-      </div>
-      <div data-aos="fade-up">
-        <Link style={{ color: "unset" }} to="/act-detail">
-          <ActCard />
-        </Link>
-      </div>
-      <div data-aos="fade-up">
-        <Link style={{ color: "unset" }} to="/act-detail">
-          <ActCard />
-        </Link>
-      </div>
-    </>
-  );
-};
 
 const TeamHome: React.FC = () => {
   const userRole: string | null = localStorage.getItem("user-role");
+  const { nickname, fetchUserInfo } = useUserState();
   const animateTargetRef = useRef<any>();
   const [tab, setTab] = useState("ing"); //ing表示当前选中即将进行标签
+
+  useEffect(() => {
+    fetchUserInfo()
+  },[])
+  
 
   const ClickIngActHandler = () => {
     if (tab === "ing") {
@@ -67,7 +48,7 @@ const TeamHome: React.FC = () => {
 
   return (
     <div className={styles.background}>
-      <HeadBar profileDisplay={true} switchModalRole={userRole} />
+      <HeadBar profileDisplay={true} switchModalRole={userRole} nickName={nickname}/>
       <div className={styles.tab_wrapper}>
         <div className={styles.process_tab}>
           <div ref={animateTargetRef} className={styles.process_button} />
@@ -89,7 +70,7 @@ const TeamHome: React.FC = () => {
           </div>
         </div>
       </div>
-      <ActList />
+      <ActList actsList={[]} />
     </div>
   );
 };

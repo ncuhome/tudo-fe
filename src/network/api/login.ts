@@ -10,6 +10,7 @@ export const login = async (userInfo: IUserInfo) => {
   });
   toastSth("success", "登陆成功", { theme: "colored" });
   localStorage.setItem("tudo-token", res.data.token); //设置token
+  localStorage.setItem("user-id", res.data.id)
   try{
     const role: any = await checkToken();
     localStorage.setItem("user-role", role); //设置角色

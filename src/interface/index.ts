@@ -21,6 +21,13 @@ export interface IUserInfo {
   password: string;
 }
 
+export interface IGetUserInfoRes {
+  avatar: string;
+  digest: string;
+  nickname: string;
+  verification: string;
+}
+
 export interface IActs {
   content: string;
   end_time: string;

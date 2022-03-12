@@ -11,6 +11,7 @@ import styles from "./index.module.scss";
 interface HeadBarProps {
   profileDisplay?: boolean;
   switchModalRole?: string | null; //用于控制点击头像的切换按钮中显示的内容 ,有"user", "admin", "team"三种选项, 分别代表普通用户, 超级管理员, 社团账户
+  nickName?: string;
 }
 
 const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
@@ -93,7 +94,7 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
         shouldCloseOnOverlayClick={true}
       >
         <div className={styles.centerModal}>
-          <div>test</div>
+          <div>{props.nickName}</div>
           <span></span>
           <Link style={{ color: "unset" }} to={"/login"}>
             <div className={styles.loginLink}>
@@ -101,7 +102,7 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
                 style={{ width: "5vw", height: "5vw" }}
                 src={"/img/add.png"}
               />
-              <span>登录组织账号</span>
+              <span>登录其他账号</span>
             </div>
           </Link>
         </div>
