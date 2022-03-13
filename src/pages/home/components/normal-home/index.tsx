@@ -3,7 +3,6 @@ import anime from "animejs";
 import AOS from "aos";
 import { Link } from "react-router-dom";
 import HeadBar from "@/components/shared/head-bar";
-import ActCard from "@/components/shared/activity-card";
 import ActList from "@/components/shared/act-list";
 import styles from "./index.module.scss";
 import { checkToken } from "@/network/api/check-token";

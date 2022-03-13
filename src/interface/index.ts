@@ -28,6 +28,16 @@ export interface IGetUserInfoRes {
   verification: string;
 }
 
+export interface IActDetail {
+  id: string;
+  user_id: string;
+  title: string;
+  content: string;
+  start_time: string;
+  end_time: string;
+  place: string;
+}
+
 export interface IActs {
   content: string;
   end_time: string;

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+// import { useHistory } from "react-router-dom";
 import AOS from "aos";
 import { Link } from "react-router-dom";
 import ActCard from "../activity-card";
@@ -8,18 +9,18 @@ const ActList: React.FC<IActlistProps> = (props: IActlistProps) => {
   useEffect(() => {
     AOS.init();
   });
-  
+
   return (
     <>
       {props.actsList ? (
         props.actsList.map((item: IActsListAct) => {
           return (
             <div key={item.id} data-aos="fade-up">
-              <Link style={{ color: "unset" }} to="/act-detail">
+              <Link style={{ color: "unset" }} to={`/act-detail?id=${item.id}`}>
                 <ActCard
                   date={item.start_time}
                   start_time={item.start_time}
-                  end_time={item.EndTime}
+                  end_time={item.end_time}
                   title={item.title}
                 />
               </Link>

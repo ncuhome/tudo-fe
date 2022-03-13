@@ -4,12 +4,24 @@ import ActInfoCard from "../../components/shared/act-info-card";
 import HeadBar from "../../components/shared/head-bar";
 import styles from "./index.module.scss";
 import { useUserState } from "@/store/useUserState";
+import { getActDetail } from "@/network/api/get-act-detail";
+import { IActDetail } from "@/interface";
 
 interface ActDetailProps {
   isOnModify?: boolean;
+  detailData: IActDetail;
 }
 
+const getQuery = (key: string) => {
+  const url = new URL(location.href);
+  return url.searchParams.get(key);
+};
+
 const IntroModify: React.FC<ActDetailProps> = (props: ActDetailProps) => {
+  useEffect(() => {
+    console.log(props);
+  });
+
   return (
     <>
       {props.isOnModify ? (
@@ -25,7 +37,7 @@ const IntroModify: React.FC<ActDetailProps> = (props: ActDetailProps) => {
         />
       ) : (
         <div className={styles.intro_text}>
-          {`易庆 （77级校友） 美国休斯顿卫理公会癌症中心副主任，血液癌症转
+          {/* {`易庆 （77级校友） 美国休斯顿卫理公会癌症中心副主任，血液癌症转
         化研究中心主任和Ralph O'Connor Centennial讲席 教授，AAAS的Fellow和Sigma
         xi的荣誉成员。 卢华（78级校友)
         国际知名生物化学和分子生物学家，美国杜兰大学
@@ -34,7 +46,8 @@ const IntroModify: React.FC<ActDetailProps> = (props: ActDetailProps) => {
         首都医科大学校长，北京大学讲席教授、北大麦戈
         文研究所创始所长、北京脑科学中心创始主任，加
         拿大Gairdner国际医学大奖医学委员会成员。
-        `}
+      `} */}
+          {props.detailData.content}
         </div>
       )}
     </>
@@ -43,12 +56,20 @@ const IntroModify: React.FC<ActDetailProps> = (props: ActDetailProps) => {
 
 const ActDetail: React.FC = () => {
   const [onEdit, setOnEdit] = useState(false);
-  const { nickName, role, fetchUserInfo } = useUserState();
-  useEffect(() => {
-    fetchUserInfo();
-    return;
-  }, []);
+  const [actDetail, setActDetail] = useState();
+  const { role, fetchUserInfo } = useUserState();
   const canModify = role === "team" ? true : false;
+
+  const fetchActDetail: any = async (actId: string | null) => {
+    const res: any = await getActDetail(actId);
+    setActDetail(res);
+  };
+
+  useEffect(() => {
+    const actID = getQuery("id");
+    fetchUserInfo();
+    setActDetail(fetchActDetail(actID));
+  }, []);
 
   const cancelActHandler = () => {
     alert("!!!");
@@ -89,10 +110,14 @@ const ActDetail: React.FC = () => {
           style={{ width: "4vw", marginRight: "3vw" }}
           src={"/img/author.svg"}
         />
-        <span style={{ fontSize: "3vw" }}>{nickName}</span>
+        <span style={{ fontSize: "3vw" }}>{actDetail}</span>
       </div>
       <div className={styles.cut_line}>简介</div>
-      <IntroModify isOnModify={onEdit} />
+      {actDetail ? (
+        <IntroModify detailData={actDetail} isOnModify={onEdit} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
