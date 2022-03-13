@@ -53,3 +53,8 @@ export interface IActCardProps {
   end_time: string;
   title: string;
 }
+
+export interface IActBasicInfoData {
+  actName: string;
+  actLocation: string;
+}

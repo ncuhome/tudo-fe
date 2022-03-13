@@ -41,7 +41,6 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
   }
 
   const controlModal = () => {
-    console.log(props.switchModalRole);
     setIsOpen(!modalIsOpen);
   };
 

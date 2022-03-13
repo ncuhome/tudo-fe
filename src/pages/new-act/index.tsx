@@ -1,18 +1,51 @@
 import React from "react";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { TextArea } from "antd-mobile";
-import ActCard from "../../components/shared/activity-card";
 import HeadBar from "../../components/shared/head-bar";
 import styles from "./index.module.scss";
+import { setNewAct } from "@/network/api/handle-act";
 import ActInfoCard from "@/components/shared/act-info-card";
+import { IActs } from "@/interface";
+import { useActDetailState } from "@/store/useActDetailState";
 
 const NewAct: React.FC = () => {
+  const { handleSubmit, control } = useForm();
+  const {
+    actName,
+    actLocation,
+    startTime,
+    endTime,
+    author,
+    content,
+    setActContent,
+  } = useActDetailState();
+
+  console.log(actName, actLocation, startTime, endTime, author, content);
+
+  const onSubmit: SubmitHandler<any> = async (data) => {
+    setActContent(data.content);
+  };
+
+  const publishNewAct = async () => {
+    try {
+      await setNewAct({
+        content: content,
+        end_time: JSON.stringify(endTime),
+        place: actLocation,
+        start_time: JSON.stringify(startTime),
+        title: actName,
+      });
+    } catch {}
+  };
+
   return (
     <div className={styles.background}>
       <HeadBar />
+
       <div className={styles.new_act_form}>
         <div className={styles.form_title}>
           <div>发布新活动</div>
-          <span>发布</span>
+          <span onClick={() => publishNewAct()}>发布</span>
         </div>
         <ActInfoCard isOnModify={true} />
         <div className={styles.cut_line}>发布者</div>
@@ -21,29 +54,29 @@ const NewAct: React.FC = () => {
             style={{ width: "4vw", marginRight: "3vw" }}
             src={"/img/author.svg"}
           />
-          <TextArea
-            style={{
-              "--color": "#727272",
-              "--placeholder-color": "#727272",
-              "--font-size": "3vw",
-            }}
-            placeholder="请输入举办方"
-            rows={1}
-            autoSize={{ minRows: 1, maxRows: 2 }}
-            className={styles.author_input}
-          />
+          <span style={{ fontSize: "3vw" }}>{"nickname"}</span>
         </div>
         <div className={styles.cut_line}>简介</div>
-        <TextArea
-          placeholder="请输入活动简介"
-          style={{
-            "--color": "#727272",
-            "--placeholder-color": "#727272",
-            "--font-size": "4vw",
-          }}
-          autoSize={{ minRows: 4, maxRows: 15 }}
-          className={styles.intro_input}
-        />
+        <form onBlur={handleSubmit(onSubmit)}>
+          <Controller
+            render={({ field }) => (
+              <TextArea
+                {...field}
+                placeholder="请输入活动简介"
+                style={{
+                  "--color": "#727272",
+                  "--placeholder-color": "#727272",
+                  "--font-size": "4vw",
+                }}
+                autoSize={{ minRows: 4, maxRows: 15 }}
+                className={styles.intro_input}
+              />
+            )}
+            name="content"
+            control={control}
+            defaultValue=""
+          />
+        </form>
       </div>
     </div>
   );
