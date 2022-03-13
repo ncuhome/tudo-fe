@@ -1,9 +1,10 @@
 import client from "../utils/request";
+import { IGetUserInfoRes } from "@/interface";
 
 export const getUserInfo = async () => {
-  const res = await client.get(
+  const res: any = await client.get(
     "/user-info?id=" + localStorage.getItem("user-id")
   );
-  // console.log(res.data)
-  return res.data;
+  const resData: IGetUserInfoRes = res.data;
+  return resData;
 };

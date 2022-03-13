@@ -7,6 +7,7 @@ import { setNewAct } from "@/network/api/handle-act";
 import ActInfoCard from "@/components/shared/act-info-card";
 import { IActs } from "@/interface";
 import { useActDetailState } from "@/store/useActDetailState";
+import { useUserState } from "@/store/useUserState";
 
 const NewAct: React.FC = () => {
   const { handleSubmit, control } = useForm();
@@ -19,6 +20,7 @@ const NewAct: React.FC = () => {
     content,
     setActContent,
   } = useActDetailState();
+  const { nickName } = useUserState();
 
   console.log(actName, actLocation, startTime, endTime, author, content);
 
@@ -54,7 +56,7 @@ const NewAct: React.FC = () => {
             style={{ width: "4vw", marginRight: "3vw" }}
             src={"/img/author.svg"}
           />
-          <span style={{ fontSize: "3vw" }}>{"nickname"}</span>
+          <span style={{ fontSize: "3vw" }}>{nickName}</span>
         </div>
         <div className={styles.cut_line}>简介</div>
         <form onBlur={handleSubmit(onSubmit)}>

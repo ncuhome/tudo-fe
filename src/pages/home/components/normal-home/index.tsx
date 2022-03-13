@@ -14,7 +14,7 @@ import "aos/dist/aos.css";
 
 const NormalHomePage: React.FC = (props) => {
   const { ActsList, fetchRecommendList } = useActsState();
-  const { nickname, fetchUserInfo } = useUserState();
+  const { nickName, fetchUserInfo } = useUserState();
 
   useEffect(() => {
     try {
@@ -58,7 +58,7 @@ const NormalHomePage: React.FC = (props) => {
 
   return (
     <div className={styles.background}>
-      <HeadBar profileDisplay={true} switchModalRole={userRole} nickName={nickname}/>
+      <HeadBar profileDisplay={true} switchModalRole={userRole} nickName={nickName}/>
       <div className={styles.act_tab}>
         {onChose ? (
           <>

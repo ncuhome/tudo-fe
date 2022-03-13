@@ -11,7 +11,7 @@ import "aos/dist/aos.css";
 
 const TeamHome: React.FC = () => {
   const userRole: string | null = localStorage.getItem("user-role");
-  const { nickname, fetchUserInfo } = useUserState();
+  const { nickName, fetchUserInfo } = useUserState();
   const animateTargetRef = useRef<any>();
   const [tab, setTab] = useState("ing"); //ing表示当前选中即将进行标签
 
@@ -48,7 +48,7 @@ const TeamHome: React.FC = () => {
 
   return (
     <div className={styles.background}>
-      <HeadBar profileDisplay={true} switchModalRole={userRole} nickName={nickname}/>
+      <HeadBar profileDisplay={true} switchModalRole={userRole} nickName={nickName}/>
       <div className={styles.tab_wrapper}>
         <div className={styles.process_tab}>
           <div ref={animateTargetRef} className={styles.process_button} />

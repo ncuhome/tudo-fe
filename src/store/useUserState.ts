@@ -9,7 +9,7 @@ export const useUserState = create(
     {
       token: localStorage.getItem("tudo-token"),
       role: localStorage.getItem("user-role"),
-      nickname: "无名氏",
+      nickName: localStorage.getItem("nickname"),
     },
     (set) => ({
       fetchUserInfo: async () => {
@@ -18,8 +18,7 @@ export const useUserState = create(
           return null;
         } else {
           //获取用户信息 等接口ing
-          const responseData: IGetUserInfoRes = await getUserInfo();
-          set({ nickname: responseData.nickname });
+          set({ nickName: localStorage.getItem("nickname") });
           set({ token: localStorage.getItem("tudo-token") });
           set({ role: localStorage.getItem("user-role") });
         }

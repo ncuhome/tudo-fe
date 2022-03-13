@@ -9,29 +9,6 @@ interface ActDetailProps {
   isOnModify?: boolean;
 }
 
-const AuthorModify: React.FC<ActDetailProps> = (props: ActDetailProps) => {
-  return (
-    <>
-      {props.isOnModify ? (
-        // <TextArea
-        //   style={{
-        //     "--color": "#727272",
-        //     "--placeholder-color": "#727272",
-        //     "--font-size": "3vw",
-        //   }}
-        //   placeholder="请输入举办方"
-        //   rows={1}
-        //   autoSize={{ minRows: 1, maxRows: 2 }}
-        //   className={styles.author_input}
-        // />
-        <span style={{ fontSize: "3vw" }}>nickname</span>
-      ) : (
-        <span style={{ fontSize: "3vw" }}>玛丽女王学院</span>
-      )}
-    </>
-  );
-};
-
 const IntroModify: React.FC<ActDetailProps> = (props: ActDetailProps) => {
   return (
     <>
@@ -66,7 +43,7 @@ const IntroModify: React.FC<ActDetailProps> = (props: ActDetailProps) => {
 
 const ActDetail: React.FC = () => {
   const [onEdit, setOnEdit] = useState(false);
-  const { role, fetchUserInfo } = useUserState();
+  const { nickName, role, fetchUserInfo } = useUserState();
   useEffect(() => {
     fetchUserInfo();
     return;
@@ -112,7 +89,7 @@ const ActDetail: React.FC = () => {
           style={{ width: "4vw", marginRight: "3vw" }}
           src={"/img/author.svg"}
         />
-        <AuthorModify isOnModify={onEdit} />
+        <span style={{ fontSize: "3vw" }}>{nickName}</span>
       </div>
       <div className={styles.cut_line}>简介</div>
       <IntroModify isOnModify={onEdit} />
