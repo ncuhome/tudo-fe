@@ -8,17 +8,23 @@ import ActCard from "../../../../components/shared/activity-card";
 import ActList from "@/components/shared/act-list";
 import styles from "./index.module.scss";
 import "aos/dist/aos.css";
+import { useActsState } from "@/store/useActsState";
 
 const TeamHome: React.FC = () => {
   const userRole: string | null = localStorage.getItem("user-role");
   const { nickName, fetchUserInfo } = useUserState();
+  const { ActsList, fetchListForTeam } = useActsState();
   const animateTargetRef = useRef<any>();
   const [tab, setTab] = useState("ing"); //ing表示当前选中即将进行标签
 
   useEffect(() => {
-    fetchUserInfo()
-  },[])
-  
+    try {
+      fetchUserInfo();
+      fetchListForTeam()
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   const ClickIngActHandler = () => {
     if (tab === "ing") {
@@ -48,7 +54,11 @@ const TeamHome: React.FC = () => {
 
   return (
     <div className={styles.background}>
-      <HeadBar profileDisplay={true} switchModalRole={userRole} nickName={nickName}/>
+      <HeadBar
+        profileDisplay={true}
+        switchModalRole={userRole}
+        nickName={nickName}
+      />
       <div className={styles.tab_wrapper}>
         <div className={styles.process_tab}>
           <div ref={animateTargetRef} className={styles.process_button} />
@@ -70,7 +80,7 @@ const TeamHome: React.FC = () => {
           </div>
         </div>
       </div>
-      <ActList actsList={[]} />
+      <ActList actsList={ActsList} />
     </div>
   );
 };

@@ -1,13 +1,8 @@
 import create from "zustand";
 import { combine } from "zustand/middleware";
 import { IActs } from "@/interface";
-import { getRecommendActList } from "@/network/api/get-recommend-acts";
-
-interface IActlistAct extends IActs {
-  digest: string;
-  id: number;
-  user_id: number;
-}
+import { getRecommendActList } from "@/network/api/get-acts";
+import { getActListForTeam } from "@/network/api/get-acts";
 
 export const useActsState = create(
   combine(
@@ -19,8 +14,12 @@ export const useActsState = create(
         const responseData = await getRecommendActList();
         // console.log(responseData.Data)
         set({
-          ActsList:responseData.Data
-        })
+          ActsList: responseData.Data,
+        });
+      },
+      fetchListForTeam: async () => {
+        const responseData = await getActListForTeam();
+        set({ ActsList: responseData });
       },
     })
   )

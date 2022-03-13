@@ -11,7 +11,7 @@ const ActList: React.FC<IActlistProps> = (props: IActlistProps) => {
   
   return (
     <>
-      {props.actsList.length ? (
+      {props.actsList ? (
         props.actsList.map((item: IActsListAct) => {
           return (
             <div key={item.id} data-aos="fade-up">
