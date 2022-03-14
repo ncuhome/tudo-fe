@@ -12,10 +12,7 @@ export const useActsState = create(
     (set) => ({
       fetchRecommendList: async () => {
         const responseData = await getRecommendActList();
-        // console.log(responseData.Data)
-        set({
-          ActsList: responseData.Data,
-        });
+        set({ ActsList: responseData });
       },
       fetchListForTeam: async () => {
         const responseData = await getActListForTeam();

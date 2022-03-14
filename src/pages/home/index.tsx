@@ -12,7 +12,7 @@ const HomePage: React.FC = () => {
     freshToken();
 
     return;
-  });
+  },[]);
   const userRole: string | null = localStorage.getItem("user-role");
   return userRole === "team" ? <TeamHome /> : <NormalHomePage />;
 };

@@ -11,15 +11,15 @@ import { useActsState } from "@/store/useActsState";
 
 const TeamHome: React.FC = () => {
   const userRole: string | null = localStorage.getItem("user-role");
-  const { nickName, fetchUserInfo } = useUserState();
   const { ActsList, fetchListForTeam } = useActsState();
+  const { nickName, fetchUserInfo } = useUserState();
   const animateTargetRef = useRef<any>();
   const [tab, setTab] = useState("ing"); //ing表示当前选中即将进行标签
 
   useEffect(() => {
     try {
-      fetchUserInfo();
       fetchListForTeam()
+      fetchUserInfo();
     } catch (error) {
       console.log(error);
     }
