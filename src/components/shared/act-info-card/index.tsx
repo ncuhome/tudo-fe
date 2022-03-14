@@ -4,8 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import { format } from "date-fns";
 import getTime from "date-fns/getTime";
 import styles from "./index.module.scss";
-import { useActDetailState } from "@/store/useActDetailState";
-// import { IActBasicInfoData } from "@/interface";
+import { useActDetailState } from "@/store/useActDetailState";;
 import { IActDetail } from "@/interface";
 
 interface ActInfoCardProps {
