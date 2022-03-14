@@ -10,12 +10,10 @@ import { IActDetail } from "@/interface";
 
 interface ActInfoCardProps {
   isOnModify?: boolean;
-  ActDetail: IActDetail;
+  ActDetail?: IActDetail;
 }
 
-const ModifyInfoCard: React.FC<ActInfoCardProps> = (
-  props: ActInfoCardProps
-) => {
+const ModifyInfoCard: React.FC<IActDetail> = (props: IActDetail) => {
   const [visible1, setVisible1] = useState(false);
   const [startTime, setStartTime] = useState("开始时间 -- -- --");
   const [visible2, setVisible2] = useState(false);
@@ -145,13 +143,11 @@ const ModifyInfoCard: React.FC<ActInfoCardProps> = (
   );
 };
 
-const NormalInfoCard: React.FC<ActInfoCardProps> = (
-  props: ActInfoCardProps
-) => {
+const NormalInfoCard: React.FC<IActDetail> = (props: IActDetail) => {
   return (
     <div className={styles.card_text_div}>
       <div className={styles.card_text_title}>
-        <span>{props.ActDetail.title}</span>
+        <span>{props.title}</span>
       </div>
       <div className={styles.card_text_info}>
         <div style={{ marginBottom: "5vw" }} className={styles.info_detail}>
@@ -159,7 +155,7 @@ const NormalInfoCard: React.FC<ActInfoCardProps> = (
             style={{ width: "4vw", marginRight: "3vw" }}
             src={"/img/location.svg"}
           />
-          <span style={{ fontSize: "3vw" }}>{props.ActDetail.place}</span>
+          <span style={{ fontSize: "3vw" }}>{props.place}</span>
         </div>
         <div className={styles.info_detail}>
           <img
@@ -168,7 +164,7 @@ const NormalInfoCard: React.FC<ActInfoCardProps> = (
           />
           <span
             style={{ fontSize: "3vw" }}
-          >{`${props.ActDetail.start_time} - ${props.ActDetail.end_time}`}</span>
+          >{`${props.start_time} - ${props.end_time}`}</span>
         </div>
       </div>
     </div>
@@ -176,10 +172,11 @@ const NormalInfoCard: React.FC<ActInfoCardProps> = (
 };
 
 const ActInfoCard: React.FC<ActInfoCardProps> = (props: ActInfoCardProps) => {
+  const definedActDetail = props.ActDetail as IActDetail;
   return props.isOnModify ? (
-    <ModifyInfoCard ActDetail={props.ActDetail} />
+    <ModifyInfoCard {...definedActDetail} />
   ) : (
-    <NormalInfoCard ActDetail={props.ActDetail} />
+    <NormalInfoCard {...definedActDetail} />
   );
 };
 
