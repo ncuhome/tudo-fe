@@ -9,11 +9,18 @@ import { useActsState } from "@/store/useActsState";
 import "aos/dist/aos.css";
 
 const NormalHomePage: React.FC = () => {
-  const { ActsList, fetchRecommendList } = useActsState();
+  const {
+    ActsList,
+    fetchRecommendList,
+    fetchDuringList,
+    fetchNotStartList,
+    clearActList,
+  } = useActsState();
   const { nickName, fetchUserInfo } = useUserState();
 
   useEffect(() => {
     try {
+      clearActList()
       fetchRecommendList();
       fetchUserInfo();
     } catch (error) {
@@ -50,11 +57,17 @@ const NormalHomePage: React.FC = () => {
       easing: "easeOutQuint",
       targets: animateTargetRef.current,
     }).play;
+    clearActList();
+    fetchNotStartList();
   };
 
   return (
     <div className={styles.background}>
-      <HeadBar profileDisplay={true} switchModalRole={userRole} nickName={nickName}/>
+      <HeadBar
+        profileDisplay={true}
+        switchModalRole={userRole}
+        nickName={nickName}
+      />
       <div className={styles.act_tab}>
         {onChose ? (
           <>
@@ -62,6 +75,9 @@ const NormalHomePage: React.FC = () => {
             <span
               onClick={() => {
                 setOnChose(false);
+                ClickIngActHandler();
+                clearActList();
+                fetchDuringList();
               }}
             >
               所有活动
@@ -69,7 +85,15 @@ const NormalHomePage: React.FC = () => {
           </>
         ) : (
           <>
-            <span onClick={() => setOnChose(true)}>推荐活动</span>
+            <span
+              onClick={() => {
+                setOnChose(true);
+                clearActList();
+                fetchRecommendList();
+              }}
+            >
+              推荐活动
+            </span>
             <span style={{ fontWeight: "bold" }}>所有活动</span>
           </>
         )}

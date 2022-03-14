@@ -11,14 +11,16 @@ import { useActsState } from "@/store/useActsState";
 
 const TeamHome: React.FC = () => {
   const userRole: string | null = localStorage.getItem("user-role");
-  const { ActsList, fetchListForTeam } = useActsState();
+  const { ActsList, fetchListForTeam, fetchEndedList, clearActList } =
+    useActsState();
   const { nickName, fetchUserInfo } = useUserState();
   const animateTargetRef = useRef<any>();
   const [tab, setTab] = useState("ing"); //ing表示当前选中即将进行标签
 
   useEffect(() => {
     try {
-      fetchListForTeam()
+      clearActList();
+      fetchListForTeam();
       fetchUserInfo();
     } catch (error) {
       console.log(error);
@@ -36,9 +38,10 @@ const TeamHome: React.FC = () => {
       easing: "easeOutQuint",
       targets: animateTargetRef.current,
     }).play;
+    fetchListForTeam();
   };
 
-  const ClickComingActHandler = () => {
+  const ClickPastActHandler = () => {
     if (tab === "coming") {
       return;
     }
@@ -49,6 +52,7 @@ const TeamHome: React.FC = () => {
       easing: "easeOutQuint",
       targets: animateTargetRef.current,
     }).play;
+    fetchEndedList();
   };
 
   return (
@@ -72,7 +76,7 @@ const TeamHome: React.FC = () => {
           <div
             className={styles.tab_text_right}
             onClick={() => {
-              ClickComingActHandler();
+              ClickPastActHandler();
             }}
           >
             历史
