@@ -133,8 +133,8 @@ export const ModifyInfoCard: React.FC<IModifyCardProps> = (
               {props.isForNew
                 ? isFirstLoad2
                   ? "输入结束时间"
-                  : useFormat(startTime)
-                : useFormat(startTime)}
+                  : useFormat(endTime)
+                : useFormat(endTime)}
             </span>
             <DatePicker
               visible={visible2}
