@@ -1,6 +1,7 @@
-import { IActCardProps } from "@/interface";
 import React from "react";
 import styles from "./index.module.scss";
+import { IActCardProps } from "@/interface";
+import { useFormat } from "@/hooks/useFormat";
 
 const ActCard: React.FC<IActCardProps> = (props: IActCardProps) => {
   return (
@@ -33,7 +34,9 @@ const ActCard: React.FC<IActCardProps> = (props: IActCardProps) => {
         <div className={styles.cardInfo_name}>{props.title}</div>
         <div className={styles.cardInfo_date}>
           <img src={"/img/calender.svg"} />
-          <span>{`${props.start_time} -- ${props.end_time}` }</span>
+          <span>{`${useFormat(props.start_time)} - ${useFormat(
+            props.end_time
+          )}`}</span>
         </div>
       </div>
     </div>
