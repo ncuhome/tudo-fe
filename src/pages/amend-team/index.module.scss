@@ -1,7 +1,7 @@
 $border: 5vw;
 $themeColor: rgb(76, 165, 169);
 @function pxToVw($px) {
-  @return ($px/375) * 100 + vw;
+  @return calc($px/375) * 100 + vw;
 }
 
 .background {

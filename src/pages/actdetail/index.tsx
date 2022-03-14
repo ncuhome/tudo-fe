@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { TextArea } from "antd-mobile";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useNavigate } from "react-router";
 import ActInfoCard from "../../components/shared/act-info-card";
 import HeadBar from "../../components/shared/head-bar";
 import styles from "./index.module.scss";
@@ -10,6 +11,7 @@ import { getActDetail } from "@/network/api/get-act-detail";
 import { getUserInfo } from "@/network/api/get-user-info";
 import { useActDetailState } from "@/store/useActDetailState";
 import { IActDetail } from "@/interface";
+import { amendAct, deleteAct } from "@/network/api/handle-act";
 
 const getQuery = (key: string) => {
   const url = new URL(location.href);
@@ -17,16 +19,8 @@ const getQuery = (key: string) => {
 };
 
 const ActDetail: React.FC = () => {
-  const { onEdit, setOnEdit } = useOnEdit();
-  const {
-    actName,
-    actLocation,
-    startTime,
-    endTime,
-    author,
-    content,
-    setFullAct,
-  } = useActDetailState();
+  const { setOnEdit } = useOnEdit();
+  const { author, setFullAct } = useActDetailState();
   const { role, fetchUserInfo } = useUserState();
   const actID = getQuery("id");
   const canModify = role === "team" ? true : false;
@@ -119,13 +113,38 @@ const IntroModify: React.FC = () => {
 };
 
 const EditBar: React.FC = () => {
+  const actID = getQuery("id");
+  const navigate = useNavigate();
   const { onEdit, setOnEdit } = useOnEdit();
-  const cancelActHandler = () => {
-    alert("!!!");
+  const { actName, actLocation, startTime, endTime, content } =
+    useActDetailState();
+
+  const cancelActHandler = async () => {
+    try {
+      await deleteAct(actID as string);
+      setOnEdit(false);
+      navigate("/", { replace: true });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const finshEditHandler = () => {
-    setOnEdit(false);
+  const finshEditHandler = async () => {
+    try {
+      await amendAct(
+        {
+          content: content,
+          end_time: endTime,
+          place: actLocation,
+          start_time: startTime,
+          title: actName,
+        },
+        actID as string
+      );
+      setOnEdit(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

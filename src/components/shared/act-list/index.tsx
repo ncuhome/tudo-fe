@@ -28,7 +28,7 @@ const ActList: React.FC<IActlistProps> = (props: IActlistProps) => {
           );
         })
       ) : (
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div style={{ display: "flex", justifyContent: "center", marginTop:"20px" }}>
           <p style={{ color: "#a8a8a8" }}>当前没有别的活动咯</p>
         </div>
       )}

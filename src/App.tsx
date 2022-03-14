@@ -1,11 +1,5 @@
-import React, { useState } from "react";
-import {
-  Route,
-  Routes,
-  Navigate,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import React from "react";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HomePage from "./pages/home";
@@ -34,7 +28,6 @@ const App: React.FC = () => {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/act-detail" element={<ActDetail />}></Route>
         <Route path="/history-act" element={<HistoryAct />}></Route>
-        {/* <Route path="/team-home" element={<TeamHome />}></Route> */}
         <Route path="/team-home/new-act" element={<NewAct />}></Route>
         <Route path="/my-manage" element={<MyManage />}></Route>
         <Route path="/my-manage/amend-team" element={<AmendTeam />}></Route>
