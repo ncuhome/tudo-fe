@@ -4,6 +4,7 @@ import AOS from "aos";
 import { Link } from "react-router-dom";
 import ActCard from "../activity-card";
 import { IActlistProps, IActsListAct } from "@/interface";
+import styles from "./index.module.scss"
 
 const ActList: React.FC<IActlistProps> = (props: IActlistProps) => {
   useEffect(() => {
@@ -11,7 +12,7 @@ const ActList: React.FC<IActlistProps> = (props: IActlistProps) => {
   });
 
   return (
-    <>
+    <div className={styles.act_card_div}>
       {props.actsList.length !== 0 ? (
         props.actsList.map((item: IActsListAct) => {
           return (
@@ -32,7 +33,7 @@ const ActList: React.FC<IActlistProps> = (props: IActlistProps) => {
           <p style={{ color: "#a8a8a8" }}>当前没有别的活动咯</p>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
