@@ -56,6 +56,10 @@ export interface IActCardProps {
   title: string;
 }
 
+export interface IModifyCardProps {
+  isForNew: boolean;
+}
+
 export interface IActBasicInfoData {
   actName: string;
   actLocation: string;

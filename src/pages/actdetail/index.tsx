@@ -1,42 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { TextArea } from "antd-mobile";
-import create from "zustand";
-import { combine } from "zustand/middleware";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import ActInfoCard from "../../components/shared/act-info-card";
 import HeadBar from "../../components/shared/head-bar";
 import styles from "./index.module.scss";
 import { useUserState } from "@/store/useUserState";
+import { useOnEdit } from "@/store/useOnEdit";
 import { getActDetail } from "@/network/api/get-act-detail";
 import { getUserInfo } from "@/network/api/get-user-info";
 import { useActDetailState } from "@/store/useActDetailState";
 import { IActDetail } from "@/interface";
-
-interface ActDetailProps {
-  isOnModify?: boolean;
-  detailData: string;
-}
 
 const getQuery = (key: string) => {
   const url = new URL(location.href);
   return url.searchParams.get(key);
 };
 
-const useOnEdit = create(
-  combine(
-    {
-      onEdit: false,
-    },
-    (set) => ({
-      setOnEdit: (newState: boolean) => {
-        set({ onEdit: newState });
-      },
-    })
-  )
-);
-
 const ActDetail: React.FC = () => {
-  const { onEdit } = useOnEdit();
+  const { onEdit, setOnEdit } = useOnEdit();
   const {
     actName,
     actLocation,
@@ -44,7 +25,7 @@ const ActDetail: React.FC = () => {
     endTime,
     author,
     content,
-    setActAfterFetch,
+    setFullAct,
   } = useActDetailState();
   const { role, fetchUserInfo } = useUserState();
   const actID = getQuery("id");
@@ -56,7 +37,7 @@ const ActDetail: React.FC = () => {
     const { nickname } = await getUserInfo(res.user_id);
     resData.nickname = nickname;
 
-    setActAfterFetch({
+    setFullAct({
       actName: resData.title,
       actLocation: resData.place,
       startTime: resData.start_time,
@@ -67,24 +48,24 @@ const ActDetail: React.FC = () => {
   };
 
   useEffect(() => {
+    setFullAct({
+      actName: "loading...",
+      actLocation: "loading...",
+      startTime: "loading...",
+      endTime: "loading...",
+      author: "loading...",
+      content: "loading...",
+    });
+    setOnEdit(false);
     fetchUserInfo();
     fetchActDetail(actID);
-  }, [actID]);
+  }, []);
 
   return (
     <div className={styles.background}>
       <HeadBar />
       {canModify ? <EditBar /> : null}
-      <ActInfoCard
-        ActDetail={{
-          title: actName,
-          start_time: startTime,
-          end_time: endTime,
-          place: actLocation,
-          content: "",
-        }}
-        isOnModify={onEdit}
-      />
+      <ActInfoCard />
       <div className={styles.cut_line}>发布者</div>
       <div className={styles.author}>
         <img
@@ -94,17 +75,14 @@ const ActDetail: React.FC = () => {
         <span style={{ fontSize: "3vw" }}>{author}</span>
       </div>
       <div className={styles.cut_line}>简介</div>
-      {content ? (
-        <IntroModify detailData={content} isOnModify={onEdit} />
-      ) : (
-        <></>
-      )}
+      <IntroModify />
     </div>
   );
 };
 
-const IntroModify: React.FC<ActDetailProps> = (props: ActDetailProps) => {
-  const { setActContent } = useActDetailState();
+const IntroModify: React.FC = () => {
+  const { onEdit } = useOnEdit();
+  const { content, setActContent } = useActDetailState();
   const { control, handleSubmit } = useForm();
   const onSubmit: SubmitHandler<any> = async (data) => {
     setActContent(data.content);
@@ -112,8 +90,8 @@ const IntroModify: React.FC<ActDetailProps> = (props: ActDetailProps) => {
   };
   return (
     <>
-      {props.isOnModify ? (
-        <form onBlur={handleSubmit(onSubmit)}>
+      {onEdit ? (
+        <div onBlur={handleSubmit(onSubmit)}>
           <Controller
             render={({ field }) => (
               <TextArea
@@ -130,11 +108,11 @@ const IntroModify: React.FC<ActDetailProps> = (props: ActDetailProps) => {
             )}
             name="content"
             control={control}
-            defaultValue=""
+            defaultValue={content}
           />
-        </form>
+        </div>
       ) : (
-        <div className={styles.intro_text}>{props.detailData}</div>
+        <div className={styles.intro_text}>{content}</div>
       )}
     </>
   );

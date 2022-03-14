@@ -4,7 +4,7 @@ import { TextArea } from "antd-mobile";
 import HeadBar from "../../components/shared/head-bar";
 import styles from "./index.module.scss";
 import { setNewAct } from "@/network/api/handle-act";
-import ActInfoCard from "@/components/shared/act-info-card";
+import ActInfoCard, { ModifyInfoCard } from "@/components/shared/act-info-card";
 import { IActs } from "@/interface";
 import { useActDetailState } from "@/store/useActDetailState";
 import { useUserState } from "@/store/useUserState";
@@ -32,9 +32,9 @@ const NewAct: React.FC = () => {
     try {
       await setNewAct({
         content: content,
-        end_time: JSON.stringify(endTime),
+        end_time: endTime,
         place: actLocation,
-        start_time: JSON.stringify(startTime),
+        start_time: startTime,
         title: actName,
       });
     } catch {}
@@ -49,7 +49,7 @@ const NewAct: React.FC = () => {
           <div>发布新活动</div>
           <span onClick={() => publishNewAct()}>发布</span>
         </div>
-        <ActInfoCard isOnModify={true} />
+        <ModifyInfoCard isForNew={true} />
         <div className={styles.cut_line}>发布者</div>
         <div className={styles.author}>
           <img

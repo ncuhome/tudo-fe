@@ -1,25 +1,28 @@
 import React, { useState, useCallback } from "react";
 import { TextArea, DatePicker } from "antd-mobile";
 import { useForm, Controller } from "react-hook-form";
-import { format } from "date-fns";
 import getTime from "date-fns/getTime";
 import styles from "./index.module.scss";
-import { useActDetailState } from "@/store/useActDetailState";;
-import { IActDetail } from "@/interface";
+import { useActDetailState } from "@/store/useActDetailState";
+import { IActDetail, IModifyCardProps } from "@/interface";
+import { useFormat } from "@/hooks/useFormat";
+import { useOnEdit } from "@/store/useOnEdit";
 
-interface ActInfoCardProps {
-  isOnModify?: boolean;
-  ActDetail?: IActDetail;
-}
-
-const ModifyInfoCard: React.FC<IActDetail> = (props: IActDetail) => {
+export const ModifyInfoCard: React.FC<IModifyCardProps> = (
+  props: IModifyCardProps
+) => {
   const [visible1, setVisible1] = useState(false);
-  const [startTime, setStartTime] = useState("开始时间 -- -- --");
   const [visible2, setVisible2] = useState(false);
-  const [endTime, setEndTime] = useState("结束时间 -- -- -- ");
   const { control, handleSubmit } = useForm();
-  const { setActBasicInfo, setActStartTime, setActEndTime } =
-    useActDetailState();
+  const {
+    actName,
+    actLocation,
+    startTime,
+    endTime,
+    setActBasicInfo,
+    setActStartTime,
+    setActEndTime,
+  } = useActDetailState();
 
   const labelRenderer = useCallback((type: string, data: number) => {
     switch (type) {
@@ -62,7 +65,7 @@ const ModifyInfoCard: React.FC<IActDetail> = (props: IActDetail) => {
           )}
           name="actName"
           control={control}
-          defaultValue=""
+          defaultValue={props.isForNew ? "" : actName}
         />
       </div>
       <div className={styles.card_text_info}>
@@ -88,7 +91,7 @@ const ModifyInfoCard: React.FC<IActDetail> = (props: IActDetail) => {
             )}
             name="actLocation"
             control={control}
-            defaultValue=""
+            defaultValue={props.isForNew ? "" : actLocation}
           />
         </div>
         <div className={styles.info_detail}>
@@ -102,7 +105,7 @@ const ModifyInfoCard: React.FC<IActDetail> = (props: IActDetail) => {
                 setVisible1(true);
               }}
             >
-              {startTime}
+              {props.isForNew ? "输入开始时间" : useFormat(startTime)}
             </span>
             <DatePicker
               visible={visible1}
@@ -111,7 +114,6 @@ const ModifyInfoCard: React.FC<IActDetail> = (props: IActDetail) => {
               }}
               precision="minute"
               onConfirm={(val: Date) => {
-                setStartTime(format(val, "yyyy M月d日 k:mm"));
                 setActStartTime(getTime(val));
               }}
               renderLabel={labelRenderer}
@@ -121,7 +123,7 @@ const ModifyInfoCard: React.FC<IActDetail> = (props: IActDetail) => {
                 setVisible2(true);
               }}
             >
-              {endTime}
+              {props.isForNew ? "输入结束时间" : useFormat(endTime)}
             </span>
             <DatePicker
               visible={visible2}
@@ -130,7 +132,6 @@ const ModifyInfoCard: React.FC<IActDetail> = (props: IActDetail) => {
               }}
               precision="minute"
               onConfirm={(val: Date) => {
-                setEndTime(format(val, "yyyy M月d日 k:mm"));
                 setActEndTime(getTime(val));
               }}
               renderLabel={labelRenderer}
@@ -142,11 +143,21 @@ const ModifyInfoCard: React.FC<IActDetail> = (props: IActDetail) => {
   );
 };
 
-const NormalInfoCard: React.FC<IActDetail> = (props: IActDetail) => {
+const NormalInfoCard: React.FC = () => {
+  const {
+    actName,
+    actLocation,
+    startTime,
+    endTime,
+    setActBasicInfo,
+    setActStartTime,
+    setActEndTime,
+  } = useActDetailState();
+
   return (
     <div className={styles.card_text_div}>
       <div className={styles.card_text_title}>
-        <span>{props.title}</span>
+        <span>{actName}</span>
       </div>
       <div className={styles.card_text_info}>
         <div style={{ marginBottom: "5vw" }} className={styles.info_detail}>
@@ -154,29 +165,25 @@ const NormalInfoCard: React.FC<IActDetail> = (props: IActDetail) => {
             style={{ width: "4vw", marginRight: "3vw" }}
             src={"/img/location.svg"}
           />
-          <span style={{ fontSize: "3vw" }}>{props.place}</span>
+          <span style={{ fontSize: "3vw" }}>{actLocation}</span>
         </div>
         <div className={styles.info_detail}>
           <img
             style={{ width: "4vw", marginRight: "3vw" }}
             src={"/img/calender.svg"}
           />
-          <span
-            style={{ fontSize: "3vw" }}
-          >{`${props.start_time} - ${props.end_time}`}</span>
+          <span style={{ fontSize: "3vw" }}>{`${useFormat(
+            startTime
+          )} - ${useFormat(endTime)}`}</span>
         </div>
       </div>
     </div>
   );
 };
 
-const ActInfoCard: React.FC<ActInfoCardProps> = (props: ActInfoCardProps) => {
-  const definedActDetail = props.ActDetail as IActDetail;
-  return props.isOnModify ? (
-    <ModifyInfoCard {...definedActDetail} />
-  ) : (
-    <NormalInfoCard {...definedActDetail} />
-  );
+const ActInfoCard: React.FC = () => {
+  const { onEdit } = useOnEdit();
+  return onEdit ? <ModifyInfoCard isForNew={false} /> : <NormalInfoCard />;
 };
 
 export default ActInfoCard;

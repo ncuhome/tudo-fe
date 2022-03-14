@@ -26,7 +26,7 @@ export const useActDetailState = create(
       setActContent: (content: string) => {
         set({ content });
       },
-      setActAfterFetch: (fullData: IActFullInfoData) => {
+      setFullAct: (fullData: IActFullInfoData) => {
         set({
           actName: fullData.actName,
           actLocation: fullData.actLocation,
