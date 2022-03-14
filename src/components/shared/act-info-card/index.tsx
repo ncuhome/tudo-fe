@@ -13,6 +13,8 @@ export const ModifyInfoCard: React.FC<IModifyCardProps> = (
 ) => {
   const [visible1, setVisible1] = useState(false);
   const [visible2, setVisible2] = useState(false);
+  const [isFirstLoad1, setIsFirstLoad1] = useState(true);
+  const [isFirstLoad2, setIsFirstLoad2] = useState(true);
   const { control, handleSubmit } = useForm();
   const {
     actName,
@@ -105,7 +107,11 @@ export const ModifyInfoCard: React.FC<IModifyCardProps> = (
                 setVisible1(true);
               }}
             >
-              {props.isForNew ? "输入开始时间" : useFormat(startTime)}
+              {props.isForNew
+                ? isFirstLoad1
+                  ? "输入开始时间"
+                  : useFormat(startTime)
+                : useFormat(startTime)}
             </span>
             <DatePicker
               visible={visible1}
@@ -114,6 +120,7 @@ export const ModifyInfoCard: React.FC<IModifyCardProps> = (
               }}
               precision="minute"
               onConfirm={(val: Date) => {
+                setIsFirstLoad1(false);
                 setActStartTime(getTime(val));
               }}
               renderLabel={labelRenderer}
@@ -123,7 +130,11 @@ export const ModifyInfoCard: React.FC<IModifyCardProps> = (
                 setVisible2(true);
               }}
             >
-              {props.isForNew ? "输入结束时间" : useFormat(endTime)}
+              {props.isForNew
+                ? isFirstLoad2
+                  ? "输入结束时间"
+                  : useFormat(startTime)
+                : useFormat(startTime)}
             </span>
             <DatePicker
               visible={visible2}
@@ -132,6 +143,7 @@ export const ModifyInfoCard: React.FC<IModifyCardProps> = (
               }}
               precision="minute"
               onConfirm={(val: Date) => {
+                setIsFirstLoad2(false);
                 setActEndTime(getTime(val));
               }}
               renderLabel={labelRenderer}
