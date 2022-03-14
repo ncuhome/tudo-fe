@@ -29,8 +29,8 @@ export interface IGetUserInfoRes {
 }
 
 export interface IActDetail {
-  id: string;
-  user_id: string;
+  id?: string;
+  user_id?: string;
   title: string;
   content: string;
   start_time: string;

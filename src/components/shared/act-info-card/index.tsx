@@ -5,12 +5,17 @@ import { format } from "date-fns";
 import getTime from "date-fns/getTime";
 import styles from "./index.module.scss";
 import { useActDetailState } from "@/store/useActDetailState";
-import { IActBasicInfoData } from "@/interface";
+// import { IActBasicInfoData } from "@/interface";
+import { IActDetail } from "@/interface";
+
 interface ActInfoCardProps {
   isOnModify?: boolean;
+  ActDetail: IActDetail;
 }
 
-const ModifyInfoCard: React.FC = () => {
+const ModifyInfoCard: React.FC<ActInfoCardProps> = (
+  props: ActInfoCardProps
+) => {
   const [visible1, setVisible1] = useState(false);
   const [startTime, setStartTime] = useState("开始时间 -- -- --");
   const [visible2, setVisible2] = useState(false);
@@ -140,13 +145,13 @@ const ModifyInfoCard: React.FC = () => {
   );
 };
 
-const NormalInfoCard: React.FC = () => {
+const NormalInfoCard: React.FC<ActInfoCardProps> = (
+  props: ActInfoCardProps
+) => {
   return (
     <div className={styles.card_text_div}>
       <div className={styles.card_text_title}>
-        <span>
-          南昌大学百年医学教育“医教协同创新发展”高峰论坛（医学研究分论坛）
-        </span>
+        <span>{props.ActDetail.title}</span>
       </div>
       <div className={styles.card_text_info}>
         <div style={{ marginBottom: "5vw" }} className={styles.info_detail}>
@@ -154,14 +159,16 @@ const NormalInfoCard: React.FC = () => {
             style={{ width: "4vw", marginRight: "3vw" }}
             src={"/img/location.svg"}
           />
-          <span style={{ fontSize: "3vw" }}>南昌大学玛丽女王学院报告厅</span>
+          <span style={{ fontSize: "3vw" }}>{props.ActDetail.place}</span>
         </div>
         <div className={styles.info_detail}>
           <img
             style={{ width: "4vw", marginRight: "3vw" }}
             src={"/img/calender.svg"}
           />
-          <span style={{ fontSize: "3vw" }}>7/8 16:00 - 7/8 19:00</span>
+          <span
+            style={{ fontSize: "3vw" }}
+          >{`${props.ActDetail.start_time} - ${props.ActDetail.end_time}`}</span>
         </div>
       </div>
     </div>
@@ -169,7 +176,11 @@ const NormalInfoCard: React.FC = () => {
 };
 
 const ActInfoCard: React.FC<ActInfoCardProps> = (props: ActInfoCardProps) => {
-  return props.isOnModify ? <ModifyInfoCard /> : <NormalInfoCard />;
+  return props.isOnModify ? (
+    <ModifyInfoCard ActDetail={props.ActDetail} />
+  ) : (
+    <NormalInfoCard ActDetail={props.ActDetail} />
+  );
 };
 
 export default ActInfoCard;

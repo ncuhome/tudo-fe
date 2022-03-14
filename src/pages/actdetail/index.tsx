@@ -5,11 +5,11 @@ import HeadBar from "../../components/shared/head-bar";
 import styles from "./index.module.scss";
 import { useUserState } from "@/store/useUserState";
 import { getActDetail } from "@/network/api/get-act-detail";
-import { IActDetail } from "@/interface";
+import { getUserInfo } from "@/network/api/get-user-info";
 
 interface ActDetailProps {
   isOnModify?: boolean;
-  detailData: IActDetail;
+  detailData: string;
 }
 
 const getQuery = (key: string) => {
@@ -18,10 +18,6 @@ const getQuery = (key: string) => {
 };
 
 const IntroModify: React.FC<ActDetailProps> = (props: ActDetailProps) => {
-  useEffect(() => {
-    console.log(props);
-  });
-
   return (
     <>
       {props.isOnModify ? (
@@ -47,7 +43,7 @@ const IntroModify: React.FC<ActDetailProps> = (props: ActDetailProps) => {
         文研究所创始所长、北京脑科学中心创始主任，加
         拿大Gairdner国际医学大奖医学委员会成员。
       `} */}
-          {props.detailData.content}
+          {props.detailData}
         </div>
       )}
     </>
@@ -56,20 +52,30 @@ const IntroModify: React.FC<ActDetailProps> = (props: ActDetailProps) => {
 
 const ActDetail: React.FC = () => {
   const [onEdit, setOnEdit] = useState(false);
-  const [actDetail, setActDetail] = useState();
+  const [actDetail, setActDetail] = useState({
+    content: "loading...",
+    end_time: "loading...",
+    nickname: "loading...",
+    place: "loading...",
+    start_time: "loading...",
+    title: "loading...",
+  });
   const { role, fetchUserInfo } = useUserState();
   const canModify = role === "team" ? true : false;
 
   const fetchActDetail: any = async (actId: string | null) => {
     const res: any = await getActDetail(actId);
+    const { nickname } = await getUserInfo(res.user_id);
+    res.nickname = nickname;
     setActDetail(res);
   };
 
+  const actID = getQuery("id");
+
   useEffect(() => {
-    const actID = getQuery("id");
     fetchUserInfo();
-    setActDetail(fetchActDetail(actID));
-  }, []);
+    fetchActDetail(actID);
+  }, [actID]);
 
   const cancelActHandler = () => {
     alert("!!!");
@@ -103,18 +109,18 @@ const ActDetail: React.FC = () => {
           )}
         </div>
       ) : null}
-      <ActInfoCard isOnModify={onEdit} />
+      <ActInfoCard ActDetail={actDetail} isOnModify={onEdit} />
       <div className={styles.cut_line}>发布者</div>
       <div className={styles.author}>
         <img
           style={{ width: "4vw", marginRight: "3vw" }}
           src={"/img/author.svg"}
         />
-        <span style={{ fontSize: "3vw" }}>{actDetail}</span>
+        <span style={{ fontSize: "3vw" }}>{actDetail.nickname}</span>
       </div>
       <div className={styles.cut_line}>简介</div>
       {actDetail ? (
-        <IntroModify detailData={actDetail} isOnModify={onEdit} />
+        <IntroModify detailData={actDetail.content} isOnModify={onEdit} />
       ) : (
         <></>
       )}
