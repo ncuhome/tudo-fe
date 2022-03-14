@@ -10,6 +10,7 @@ import { useUserState } from "@/store/useUserState";
 import { getActDetail } from "@/network/api/get-act-detail";
 import { getUserInfo } from "@/network/api/get-user-info";
 import { useActDetailState } from "@/store/useActDetailState";
+import { IActDetail } from "@/interface";
 
 interface ActDetailProps {
   isOnModify?: boolean;
@@ -36,14 +37,6 @@ const useOnEdit = create(
 
 const ActDetail: React.FC = () => {
   const { onEdit } = useOnEdit();
-  const [actDetail, setActDetail] = useState({
-    content: "loading...",
-    end_time: "loading...",
-    nickname: "loading...",
-    place: "loading...",
-    start_time: "loading...",
-    title: "loading...",
-  });
   const {
     actName,
     actLocation,
@@ -51,7 +44,7 @@ const ActDetail: React.FC = () => {
     endTime,
     author,
     content,
-    setActContent,
+    setActAfterFetch,
   } = useActDetailState();
   const { role, fetchUserInfo } = useUserState();
   const actID = getQuery("id");
@@ -59,9 +52,18 @@ const ActDetail: React.FC = () => {
 
   const fetchActDetail: any = async (actId: string | null) => {
     const res: any = await getActDetail(actId);
+    const resData = res as IActDetail;
     const { nickname } = await getUserInfo(res.user_id);
-    res.nickname = nickname;
-    setActDetail(res);
+    resData.nickname = nickname;
+
+    setActAfterFetch({
+      actName: resData.title,
+      actLocation: resData.place,
+      startTime: resData.start_time,
+      endTime: resData.end_time,
+      author: resData.nickname,
+      content: resData.content,
+    });
   };
 
   useEffect(() => {
@@ -73,18 +75,27 @@ const ActDetail: React.FC = () => {
     <div className={styles.background}>
       <HeadBar />
       {canModify ? <EditBar /> : null}
-      <ActInfoCard ActDetail={actDetail} isOnModify={onEdit} />
+      <ActInfoCard
+        ActDetail={{
+          title: actName,
+          start_time: startTime,
+          end_time: endTime,
+          place: actLocation,
+          content: "",
+        }}
+        isOnModify={onEdit}
+      />
       <div className={styles.cut_line}>发布者</div>
       <div className={styles.author}>
         <img
           style={{ width: "4vw", marginRight: "3vw" }}
           src={"/img/author.svg"}
         />
-        <span style={{ fontSize: "3vw" }}>{actDetail.nickname}</span>
+        <span style={{ fontSize: "3vw" }}>{author}</span>
       </div>
       <div className={styles.cut_line}>简介</div>
-      {actDetail ? (
-        <IntroModify detailData={actDetail.content} isOnModify={onEdit} />
+      {content ? (
+        <IntroModify detailData={content} isOnModify={onEdit} />
       ) : (
         <></>
       )}
@@ -97,7 +108,7 @@ const IntroModify: React.FC<ActDetailProps> = (props: ActDetailProps) => {
   const { control, handleSubmit } = useForm();
   const onSubmit: SubmitHandler<any> = async (data) => {
     setActContent(data.content);
-    console.log(data.content)
+    console.log(data.content);
   };
   return (
     <>

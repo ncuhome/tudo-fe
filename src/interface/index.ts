@@ -28,15 +28,7 @@ export interface IGetUserInfoRes {
   verification: string;
 }
 
-export interface IActDetail {
-  id?: string;
-  user_id?: string;
-  title: string;
-  content: string;
-  start_time: string;
-  end_time: string;
-  place: string;
-}
+
 
 export interface IActs {
   content: string;
@@ -67,4 +59,24 @@ export interface IActCardProps {
 export interface IActBasicInfoData {
   actName: string;
   actLocation: string;
+}
+
+export interface IActFullInfoData {
+  actName: string;
+  actLocation: string;
+  startTime: string;
+  endTime: string;
+  author: string;
+  content: string;
+}
+
+export interface IActDetail {
+  id?: string;
+  user_id?: string;
+  nickname?:string;
+  title: string;
+  content: string;
+  start_time: string;
+  end_time: string;
+  place: string;
 }

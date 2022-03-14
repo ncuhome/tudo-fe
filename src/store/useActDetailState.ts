@@ -1,15 +1,15 @@
 import create from "zustand";
 import { combine } from "zustand/middleware";
 import { setNewAct, amendAct, deleteAct } from "@/network/api/handle-act";
-import { IActBasicInfoData } from "@/interface";
+import { IActBasicInfoData, IActFullInfoData } from "@/interface";
 
 export const useActDetailState = create(
   combine(
     {
       actName: "",
       actLocation: "",
-      startTime: NaN,
-      endTime: NaN,
+      startTime: "",
+      endTime: "",
       author: "",
       content: "",
     },
@@ -18,13 +18,23 @@ export const useActDetailState = create(
         set({ actName: BasicData.actName, actLocation: BasicData.actLocation });
       },
       setActStartTime: (startTime: number) => {
-        set({ startTime });
+        set({ startTime: JSON.stringify(startTime) });
       },
       setActEndTime: (endTime: number) => {
-        set({ endTime });
+        set({ endTime: JSON.stringify(endTime) });
       },
       setActContent: (content: string) => {
         set({ content });
+      },
+      setActAfterFetch: (fullData: IActFullInfoData) => {
+        set({
+          actName: fullData.actName,
+          actLocation: fullData.actLocation,
+          startTime: fullData.startTime,
+          endTime: fullData.endTime,
+          author: fullData.author,
+          content: fullData.content,
+        });
       },
     })
   )
