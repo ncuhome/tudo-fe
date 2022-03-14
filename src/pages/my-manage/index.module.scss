@@ -7,12 +7,12 @@ $themeColor: rgb(76, 165, 169);
   height: 100vh;
 
   .card_list {
-    .account_card {
+    .account_card_active {
       width: 90vw;
       height: 32vw;
       border-radius: 15px;
       margin: $border;
-      background-color: #ffff;
+      background-image: linear-gradient( 135deg, #70F570 10%, #49C628 100%);
       display: flex;
       align-items: center;
 
@@ -24,12 +24,42 @@ $themeColor: rgb(76, 165, 169);
 
       & > span {
         font-size: 5vw;
+        color: #f0f0f2;
       }
 
       & > a > span {
         font-size: 4vw;
         margin-left: 27vw;
-        color: #4ca8f3;
+        color: #528ae0;
+      }
+    }
+    .account_card_inactive{
+      width: 90vw;
+      height: 32vw;
+      border-radius: 15px;
+      margin: $border;
+      background-image: linear-gradient(to left, #BDBBBE 0%, #9D9EA3 100%), radial-gradient(88% 271%, rgba(255, 255, 255, 0.25) 0%, rgba(254, 254, 254, 0.25) 1%, rgba(0, 0, 0, 0.25) 100%), radial-gradient(50% 100%, rgba(255, 255, 255, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%);
+      background-blend-mode: normal, lighten, soft-light;
+      display: flex;
+      align-items: center;
+
+      & > img {
+        width: 11.5vw;
+        margin-left: 5.6vw;
+        margin-right: 5.6vw;
+      }
+
+      & > span {
+        font-size: 5vw;
+        color: #f0f0f2;
+
+      }
+
+      & > a > span {
+        font-size: 4vw;
+        margin-left: 27vw;
+        color: #48e648;
+        font-weight: bold;
       }
     }
   }
