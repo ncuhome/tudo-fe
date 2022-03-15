@@ -8,6 +8,11 @@ $themeColor: rgb(76, 165, 169);
   background: #f0f0f2;
   width: 100vw;
   height: 100vh;
+  
+  .tips_word{
+    text-align: center;
+    color: #00000080;
+  }
 
   .team_info_card {
     margin: $border;
@@ -72,6 +77,9 @@ $themeColor: rgb(76, 165, 169);
 
         & > input {
           font-size: 4vw;
+          &::placeholder {
+            color: #00000080;
+          }
           margin-left: pxToVw(11);
           padding: 8px;
           border-radius: 16px;

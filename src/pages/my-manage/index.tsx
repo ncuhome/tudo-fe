@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import HeadBar from "@/components/shared/head-bar";
 import styles from "./index.module.scss";
 import { getOrgStatus } from "@/network/api/get-org-status";
+import { Loading } from "antd-mobile";
 
 const MyManage: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -37,16 +38,26 @@ const MyManage: React.FC = () => {
         {resData.register ? (
           <div className={styles.account_card_active}>
             <img src={"/img/img.svg"} />
-            <span>家园工作室</span>
-            <Link to="/my-manage/amend-team" replace>
+            <span>{resData.organization}</span>
+            <Link
+              to={`/my-manage/amend-team?status=${resData.register}&team=${resData.organization}`}
+              replace
+            >
               <span>编辑</span>
             </Link>
           </div>
         ) : (
           <div className={styles.account_card_inactive}>
             <img src={"/img/img.svg"} />
-            <span>家园工作室</span>
-            <Link to="/my-manage/amend-team" replace>
+            {isLoaded ? (
+              <span>{resData.organization}</span>
+            ) : (
+              <span>loading...</span>
+            )}
+            <Link
+              to={`/my-manage/amend-team?status=${resData.register}&team=${resData.organization}`}
+              replace
+            >
               {isLoaded ? (
                 <span>激活</span>
               ) : (

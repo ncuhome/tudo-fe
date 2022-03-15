@@ -28,8 +28,6 @@ export interface IGetUserInfoRes {
   verification: string;
 }
 
-
-
 export interface IActs {
   content: string;
   end_time: string;
@@ -77,7 +75,7 @@ export interface IActFullInfoData {
 export interface IActDetail {
   id?: string;
   user_id?: string;
-  nickname?:string;
+  nickname?: string;
   title: string;
   content: string;
   start_time: string;
