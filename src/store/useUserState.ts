@@ -1,8 +1,6 @@
 //管理token,role,username,(头像)
-import { getUserInfo } from "@/network/api/get-user-info";
 import create from "zustand";
 import { combine } from "zustand/middleware";
-import { IGetUserInfoRes } from "@/interface";
 
 export const useUserState = create(
   combine(

@@ -1,6 +1,5 @@
 import create from "zustand";
 import { combine } from "zustand/middleware";
-import { setNewAct, amendAct, deleteAct } from "@/network/api/handle-act";
 import { IActBasicInfoData, IActFullInfoData } from "@/interface";
 
 export const useActDetailState = create(

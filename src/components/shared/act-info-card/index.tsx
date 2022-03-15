@@ -4,7 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import getTime from "date-fns/getTime";
 import styles from "./index.module.scss";
 import { useActDetailState } from "@/store/useActDetailState";
-import { IActDetail, IModifyCardProps } from "@/interface";
+import { IModifyCardProps } from "@/interface";
 import { useFormat } from "@/hooks/useFormat";
 import { useOnEdit } from "@/store/useOnEdit";
 
@@ -156,15 +156,7 @@ export const ModifyInfoCard: React.FC<IModifyCardProps> = (
 };
 
 const NormalInfoCard: React.FC = () => {
-  const {
-    actName,
-    actLocation,
-    startTime,
-    endTime,
-    setActBasicInfo,
-    setActStartTime,
-    setActEndTime,
-  } = useActDetailState();
+  const { actName, actLocation, startTime, endTime } = useActDetailState();
 
   return (
     <div className={styles.card_text_div}>

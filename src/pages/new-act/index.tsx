@@ -4,8 +4,7 @@ import { TextArea } from "antd-mobile";
 import HeadBar from "../../components/shared/head-bar";
 import styles from "./index.module.scss";
 import { setNewAct } from "@/network/api/handle-act";
-import ActInfoCard, { ModifyInfoCard } from "@/components/shared/act-info-card";
-import { IActs } from "@/interface";
+import { ModifyInfoCard } from "@/components/shared/act-info-card";
 import { useActDetailState } from "@/store/useActDetailState";
 import { useUserState } from "@/store/useUserState";
 
@@ -29,15 +28,13 @@ const NewAct: React.FC = () => {
   };
 
   const publishNewAct = async () => {
-    try {
-      await setNewAct({
-        content: content,
-        end_time: endTime,
-        place: actLocation,
-        start_time: startTime,
-        title: actName,
-      });
-    } catch {}
+    await setNewAct({
+      content: content,
+      end_time: endTime,
+      place: actLocation,
+      start_time: startTime,
+      title: actName,
+    });
   };
 
   return (

@@ -1,7 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import anime from "animejs";
-import AOS from "aos";
 import { useUserState } from "@/store/useUserState";
 import HeadBar from "../../../../components/shared/head-bar";
 import ActList from "@/components/shared/act-list";

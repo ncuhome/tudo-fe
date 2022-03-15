@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import HeadBar from "@/components/shared/head-bar";
 import styles from "./index.module.scss";
 import { getOrgStatus } from "@/network/api/get-org-status";
-import { Loading } from "antd-mobile";
 
 const MyManage: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -22,6 +21,7 @@ const MyManage: React.FC = () => {
       setResData(res);
       setIsLoaded(true);
     } catch (error) {
+      setIsLoaded(true);
       console.log(error);
     }
   };

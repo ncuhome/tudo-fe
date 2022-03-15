@@ -1,14 +1,12 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { ILoginRes, IUserInfo } from "@/interface";
-// import { useUserRole } from "@/store/user-role";
+import { IUserInfo } from "@/interface";
 import { login } from "@/network/api/login";
 import HeadBar from "../../components/shared/head-bar";
 import styles from "./index.module.scss";
 
 const Login: React.FC = () => {
-  // const { addRole } = useUserRole();
   let titleText;
   if (!localStorage.getItem("user-role")) {
     titleText = "使用前请登录云家园账号";

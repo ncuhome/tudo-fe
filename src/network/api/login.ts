@@ -2,7 +2,7 @@ import { toastSth } from "@/App";
 import { getUserInfo } from "./get-user-info";
 import { checkToken } from "./check-token";
 import client from "../utils/request";
-import { ILoginRes, IUserInfo, IGetUserInfoRes } from "@/interface/";
+import { IUserInfo, IGetUserInfoRes } from "@/interface/";
 
 export const login = async (userInfo: IUserInfo) => {
   const res = await client.post("/login", {

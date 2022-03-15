@@ -19,13 +19,9 @@ const NormalHomePage: React.FC = () => {
   const { nickName, fetchUserInfo } = useUserState();
 
   useEffect(() => {
-    try {
-      clearActList()
-      fetchRecommendList();
-      fetchUserInfo();
-    } catch (error) {
-      console.log(error);
-    }
+    clearActList();
+    fetchRecommendList();
+    fetchUserInfo();
   }, []);
 
   const userRole: string | null = localStorage.getItem("user-role");
