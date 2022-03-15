@@ -6,7 +6,6 @@ export const getUserInfo = async (...arg: any) => {
   if (arg.length > 0) {
     userID = arg;
   } else {
-    console.log("!!");
     userID = localStorage.getItem("user-id");
   }
   const res: any = await client.get("/user-info?id=" + userID);

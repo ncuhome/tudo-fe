@@ -1,4 +1,4 @@
-import React, { Profiler, useEffect } from "react";
+import React from "react";
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
 import {
