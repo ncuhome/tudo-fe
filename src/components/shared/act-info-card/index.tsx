@@ -47,7 +47,6 @@ export const ModifyInfoCard: React.FC<IModifyCardProps> = (
   }, []);
 
   const onSubmit = (data: any) => {
-    console.log(data);
     setActBasicInfo(data);
   };
 
@@ -118,6 +117,7 @@ export const ModifyInfoCard: React.FC<IModifyCardProps> = (
                 : useFormat(startTime)}
             </span>
             <DatePicker
+              min={now}
               visible={visible1}
               onClose={() => {
                 setVisible1(false);
@@ -142,6 +142,7 @@ export const ModifyInfoCard: React.FC<IModifyCardProps> = (
                 : useFormat(endTime)}
             </span>
             <DatePicker
+              min={useFormatToDate(startTime)}
               visible={visible2}
               onClose={() => {
                 setVisible2(false);

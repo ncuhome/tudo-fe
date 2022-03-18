@@ -23,7 +23,6 @@ const NewAct: React.FC = () => {
 
   const onSubmit: SubmitHandler<any> = async (data) => {
     setActContent(data.content);
-    console.log(startTime,endTime)
   };
 
   const publishNewAct = async () => {
