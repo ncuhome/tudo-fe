@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { TextArea } from "antd-mobile";
 import HeadBar from "../../components/shared/head-bar";
@@ -15,16 +15,15 @@ const NewAct: React.FC = () => {
     actLocation,
     startTime,
     endTime,
-    author,
     content,
     setActContent,
+    clearFullAct,
   } = useActDetailState();
   const { nickName } = useUserState();
 
-  console.log(actName, actLocation, startTime, endTime, author, content);
-
   const onSubmit: SubmitHandler<any> = async (data) => {
     setActContent(data.content);
+    console.log(startTime,endTime)
   };
 
   const publishNewAct = async () => {
@@ -36,6 +35,10 @@ const NewAct: React.FC = () => {
       title: actName,
     });
   };
+
+  useEffect(() => {
+    clearFullAct();
+  }, []);
 
   return (
     <div className={styles.background}>

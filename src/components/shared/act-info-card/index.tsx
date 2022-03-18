@@ -7,6 +7,9 @@ import { useActDetailState } from "@/store/useActDetailState";
 import { IModifyCardProps } from "@/interface";
 import { useFormat } from "@/hooks/useFormat";
 import { useOnEdit } from "@/store/useOnEdit";
+import { useFormatToDate } from "@/hooks/useFormatToDate";
+
+const now = new Date();
 
 export const ModifyInfoCard: React.FC<IModifyCardProps> = (
   props: IModifyCardProps
@@ -44,6 +47,7 @@ export const ModifyInfoCard: React.FC<IModifyCardProps> = (
   }, []);
 
   const onSubmit = (data: any) => {
+    console.log(data);
     setActBasicInfo(data);
   };
 
@@ -124,6 +128,7 @@ export const ModifyInfoCard: React.FC<IModifyCardProps> = (
                 setActStartTime(getTime(val));
               }}
               renderLabel={labelRenderer}
+              defaultValue={props.isForNew ? now : useFormatToDate(startTime)}
             />
             <span
               onClick={() => {
@@ -147,6 +152,7 @@ export const ModifyInfoCard: React.FC<IModifyCardProps> = (
                 setActEndTime(getTime(val));
               }}
               renderLabel={labelRenderer}
+              defaultValue={props.isForNew ? now : useFormatToDate(endTime)}
             />
           </div>
         </div>

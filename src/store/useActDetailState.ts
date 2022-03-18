@@ -35,6 +35,16 @@ export const useActDetailState = create(
           content: fullData.content,
         });
       },
+      clearFullAct: () => {
+        set({
+          actName: "",
+          actLocation: "",
+          startTime: "",
+          endTime: "",
+          author: "",
+          content: "",
+        });
+      },
     })
   )
 );
