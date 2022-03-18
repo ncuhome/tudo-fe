@@ -8,7 +8,6 @@ const client = axios.create({
 
 client.interceptors.request.use(
   (config) => {
-    console.log("请求拦截");
     const token: string | null = localStorage.getItem("tudo-token");
     if (config.headers && token) config.headers.token = token;
     return config;
@@ -20,12 +19,9 @@ client.interceptors.request.use(
 
 client.interceptors.response.use(
   (response) => {
-    // toastSth("success", response.data.message, { theme: "colored" });
-    console.log("成功响应拦截");
     return response.data;
   },
   (error) => {
-    console.log("错误响应拦截");
     console.log(error.response);
     toastSth("error", error.response.data.message, { theme: "colored" });
     return Promise.reject(error);
