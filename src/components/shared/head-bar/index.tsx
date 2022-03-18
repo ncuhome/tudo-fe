@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   customCenterStyles,
   switchStylesDefault,
@@ -17,6 +17,7 @@ interface HeadBarProps {
 const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [centerModal, setCenterModal] = React.useState(false);
+  const navigate = useNavigate();
 
   const switchStyles =
     props.switchModalRole === "user"
@@ -51,10 +52,9 @@ const HeadBar: React.FC<HeadBarProps> = (props: HeadBarProps) => {
       <div className={styles.barFront}>
         <img
           src={"/img/back_arrow.svg"}
-          onClick={() => window.history.back()}
+          onClick={() => navigate(-1)}
           alt="back"
         />
-        <img src={"/img/exit.svg"} alt="exit" />
       </div>
       {props.profileDisplay ? (
         <img
