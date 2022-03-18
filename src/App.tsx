@@ -15,7 +15,7 @@ import "./App.css";
 const App: React.FC = () => {
   return (
     <>
-      <ToastContainer position="top-center" hideProgressBar={true} />
+      <ToastContainer position="top-center" hideProgressBar={true} autoClose={2000} />
       <Routes>
         <Route
           path="/"

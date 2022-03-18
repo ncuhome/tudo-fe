@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Dialog } from "antd-mobile";
 import HeadBar from "@/components/shared/head-bar";
 import styles from "./index.module.scss";
 import { setOrgAccountInfo } from "@/network/api/set-account-info";
@@ -11,7 +12,7 @@ const getQuery = (key: string) => {
 
 const AmendTeam: React.FC = () => {
   const status = getQuery("status") as string;
-  const teamName = getQuery("team")
+  const teamName = getQuery("team");
   const activeStatus = JSON.parse(status);
   const [password, setPassword] = useState("");
 
@@ -48,7 +49,16 @@ const AmendTeam: React.FC = () => {
             <Link to="/my-manage" replace>
               <div>取消</div>
             </Link>
-            <div onClick={() => sumitHandler()}>确定</div>
+            <div
+              onClick={() =>
+                Dialog.confirm({
+                  content: "确认要设置该密码吗?",
+                  onConfirm: () => sumitHandler(),
+                })
+              }
+            >
+              确定
+            </div>
           </div>
         </div>
       </div>
