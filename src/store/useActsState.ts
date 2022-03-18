@@ -13,34 +13,77 @@ export const useActsState = create(
   combine(
     {
       ActsList: [],
+      isActsLoading: false,
     },
     (set) => ({
       clearActList: () => {
-        set({ ActsList: [] });
+        set({ ActsList: [], isActsLoading: false });
       },
       fetchRecommendList: async () => {
-        const responseData = await getRecommendActList();
-        set({ ActsList: responseData });
+        try {
+          set({ isActsLoading: true });
+          const responseData = await getRecommendActList();
+          set({ ActsList: responseData });
+          set({ isActsLoading: false });
+        } catch (error) {
+          set({ isActsLoading: false });
+          console.log(error);
+        }
       },
       fetchDuringList: async () => {
-        const responseData = await getDuringActList();
-        set({ ActsList: responseData });
+        try {
+          set({ isActsLoading: true });
+          const responseData = await getDuringActList();
+          set({ ActsList: responseData });
+          set({ isActsLoading: false });
+        } catch (error) {
+          set({ isActsLoading: false });
+          console.log(error);
+        }
       },
       fetchNotStartList: async () => {
-        const responseData = await getNotStartActList();
-        set({ ActsList: responseData });
+        try {
+          set({ isActsLoading: true });
+          const responseData = await getNotStartActList();
+          set({ ActsList: responseData });
+          set({ isActsLoading: false });
+        } catch (error) {
+          set({ isActsLoading: false });
+          console.log(error);
+        }
       },
       fetchEndedList: async () => {
-        const responseData = await getEndedActivity();
-        set({ ActsList: responseData });
+        try {
+          set({ isActsLoading: true });
+          const responseData = await getEndedActivity();
+          set({ ActsList: responseData });
+          set({ isActsLoading: false });
+        } catch (error) {
+          set({ isActsLoading: false });
+          console.log(error);
+        }
       },
       fetchListForTeam: async () => {
-        const responseData = await getActListForTeam();
-        set({ ActsList: responseData });
+        try {
+          set({ isActsLoading: true });
+          const responseData = await getActListForTeam();
+          set({ ActsList: responseData });
+          set({ isActsLoading: false });
+        } catch (error) {
+          set({ isActsLoading: false });
+          console.log(error);
+        }
       },
       fetchPastActForTeam: async () => {
-        const responseData = await getPastActListForTeam();
-        set({ ActsList: responseData });
+        try {
+          set({ isActsLoading: true });
+          const responseData = await getPastActListForTeam();
+          set({ ActsList: responseData });
+          set({ isActsLoading: false });
+        } catch (error) {
+          set({ isActsLoading: false });
+          console.log(error);
+        }
       },
     })
   )

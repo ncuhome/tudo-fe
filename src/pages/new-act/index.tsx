@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { TextArea } from "antd-mobile";
+import { TextArea, Dialog } from "antd-mobile";
 import HeadBar from "../../components/shared/head-bar";
 import styles from "./index.module.scss";
 import { setNewAct } from "@/network/api/handle-act";
@@ -46,7 +46,16 @@ const NewAct: React.FC = () => {
       <div className={styles.new_act_form}>
         <div className={styles.form_title}>
           <div>发布新活动</div>
-          <span onClick={() => publishNewAct()}>发布</span>
+          <span
+            onClick={() =>
+              Dialog.confirm({
+                content: "确认发布该活动吗?",
+                onConfirm: () => publishNewAct(),
+              })
+            }
+          >
+            发布
+          </span>
         </div>
         <ModifyInfoCard isForNew={true} />
         <div className={styles.cut_line}>发布者</div>

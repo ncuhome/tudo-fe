@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { TextArea } from "antd-mobile";
+import { TextArea, Dialog } from "antd-mobile";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { useNavigate } from "react-router";
 import ActInfoCard from "../../components/shared/act-info-card";
@@ -120,13 +120,9 @@ const EditBar: React.FC = () => {
     useActDetailState();
 
   const cancelActHandler = async () => {
-    try {
-      await deleteAct(actID as string);
-      setOnEdit(false);
-      navigate("/", { replace: true });
-    } catch (error) {
-      console.log(error);
-    }
+    await deleteAct(actID as string);
+    setOnEdit(false);
+    navigate("/", { replace: true });
   };
 
   const finshEditHandler = async () => {
@@ -151,12 +147,25 @@ const EditBar: React.FC = () => {
     <div className={styles.edit_bar}>
       {onEdit ? (
         <>
-          <span style={{ color: "red" }} onClick={() => cancelActHandler()}>
+          <span
+            style={{ color: "red" }}
+            onClick={() =>
+              Dialog.confirm({
+                content: "确认要取消这项活动吗? 取消后无法撤回",
+                onConfirm: () => cancelActHandler(),
+              })
+            }
+          >
             取消活动
           </span>
           <span
             style={{ color: "#4CA8F3", marginLeft: "3vw" }}
-            onClick={() => finshEditHandler()}
+            onClick={() =>
+              Dialog.confirm({
+                content: "确认对该活动进行修改吗?",
+                onConfirm: () => finshEditHandler(),
+              })
+            }
           >
             完成
           </span>

@@ -1,5 +1,11 @@
-.background{
+.background {
   background: #f0f0f2;
   width: 100vw;
   height: 100vh;
+
+  .loader_wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+  }
 }

@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import anime from "animejs";
+import { DotLoading } from "antd-mobile";
 import { Link } from "react-router-dom";
 import HeadBar from "@/components/shared/head-bar";
 import ActList from "@/components/shared/act-list";
@@ -11,6 +12,7 @@ import "aos/dist/aos.css";
 const NormalHomePage: React.FC = () => {
   const {
     ActsList,
+    isActsLoading,
     fetchRecommendList,
     fetchDuringList,
     fetchNotStartList,
@@ -41,7 +43,7 @@ const NormalHomePage: React.FC = () => {
       targets: animateTargetRef.current,
     }).play;
     clearActList();
-    fetchDuringList()
+    fetchDuringList();
   };
 
   const ClickComingActHandler = () => {
@@ -126,7 +128,13 @@ const NormalHomePage: React.FC = () => {
           </div>
         )}
       </div>
-      <ActList actsList={ActsList} />
+      {isActsLoading ? (
+        <div className={styles.loader_wrapper}>
+          <DotLoading color={"#6ba7ac"} />
+        </div>
+      ) : (
+        <ActList actsList={ActsList} />
+      )}
     </div>
   );
 };

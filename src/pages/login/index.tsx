@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { SpinLoading } from "antd-mobile";
 import { IUserInfo } from "@/interface";
 import { login } from "@/network/api/login";
 import HeadBar from "../../components/shared/head-bar";
 import styles from "./index.module.scss";
 
 const Login: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
   let titleText;
   if (!localStorage.getItem("user-role")) {
     titleText = "使用前请登录云家园账号";
@@ -17,10 +19,13 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<IUserInfo>();
   const onSubmit: SubmitHandler<IUserInfo> = async (data) => {
+    setIsLoading(true);
     try {
       await login(data);
+      setIsLoading(false);
       navigate("/", { replace: true });
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
     }
   };
@@ -51,11 +56,15 @@ const Login: React.FC = () => {
           </label>
         </div>
         <div className={styles.loginButtonWrapper}>
-          <input
-            type={"submit"}
-            value="登录"
-            className={styles.loginButton}
-          ></input>
+          {isLoading ? (
+            <SpinLoading color={"#6ba7ac"} />
+          ) : (
+            <input
+              type={"submit"}
+              value="登录"
+              className={styles.loginButton}
+            />
+          )}
         </div>
       </form>
     </div>

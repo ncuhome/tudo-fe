@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { DotLoading } from "antd-mobile";
 import anime from "animejs";
 import { useUserState } from "@/store/useUserState";
 import HeadBar from "../../../../components/shared/head-bar";
@@ -9,20 +10,21 @@ import { useActsState } from "@/store/useActsState";
 
 const TeamHome: React.FC = () => {
   const userRole: string | null = localStorage.getItem("user-role");
-  const { ActsList, fetchListForTeam, fetchEndedList, clearActList } =
-    useActsState();
+  const {
+    ActsList,
+    isActsLoading,
+    fetchListForTeam,
+    fetchEndedList,
+    clearActList,
+  } = useActsState();
   const { nickName, fetchUserInfo } = useUserState();
   const animateTargetRef = useRef<any>();
   const [tab, setTab] = useState("ing"); //ing表示当前选中即将进行标签
 
   useEffect(() => {
-    try {
-      clearActList();
-      fetchListForTeam();
-      fetchUserInfo();
-    } catch (error) {
-      console.log(error);
-    }
+    clearActList();
+    fetchListForTeam();
+    fetchUserInfo();
   }, []);
 
   const ClickIngActHandler = () => {
@@ -36,6 +38,7 @@ const TeamHome: React.FC = () => {
       easing: "easeOutQuint",
       targets: animateTargetRef.current,
     }).play;
+    clearActList()
     fetchListForTeam();
   };
 
@@ -50,6 +53,7 @@ const TeamHome: React.FC = () => {
       easing: "easeOutQuint",
       targets: animateTargetRef.current,
     }).play;
+    clearActList()
     fetchEndedList();
   };
 
@@ -81,7 +85,13 @@ const TeamHome: React.FC = () => {
           </div>
         </div>
       </div>
-      <ActList actsList={ActsList} />
+      {isActsLoading ? (
+        <div className={styles.loader_wrapper}>
+          <DotLoading color={"#6ba7ac"} />
+        </div>
+      ) : (
+        <ActList actsList={ActsList} />
+      )}
     </div>
   );
 };

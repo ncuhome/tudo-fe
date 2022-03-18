@@ -64,4 +64,10 @@ $border: 5vw;
       }
     }
   }
+
+  .loader_wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+  }
 }
