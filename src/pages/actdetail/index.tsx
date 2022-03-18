@@ -113,7 +113,7 @@ const EditBar: React.FC = () => {
             style={{ color: "#4CA8F3", marginLeft: "3vw" }}
             onClick={() =>
               Dialog.confirm({
-                content: "确认对该活动进行修改吗?",
+                content: "确认对该活动进行修改并发布吗?",
                 onConfirm: () => finshEditHandler(),
               })
             }
