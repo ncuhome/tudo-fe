@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./index.module.scss";
 import { IActCardProps } from "@/interface";
 import { useFormat } from "@/hooks/useFormat";
@@ -20,10 +20,6 @@ const ActCard: React.FC<IActCardProps> = (props: IActCardProps) => {
       JSON.stringify(getDate(startTime))
     );
   };
-
-  useEffect(() => {
-    getBriefDate();
-  }, []);
 
   return (
     <div className={styles.cardBox}>

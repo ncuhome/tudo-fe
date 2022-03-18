@@ -40,6 +40,8 @@ const NormalHomePage: React.FC = () => {
       easing: "easeOutQuint",
       targets: animateTargetRef.current,
     }).play;
+    clearActList();
+    fetchDuringList()
   };
 
   const ClickComingActHandler = () => {

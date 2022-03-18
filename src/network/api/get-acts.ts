@@ -4,7 +4,7 @@ const presentTimeStrap = new Date().getTime();
 
 export const getDuringActList = async () => {
   const res = await client.get(
-    `/during-activity?pre=${presentTimeStrap}&now=${presentTimeStrap}`
+    `/during-activity?pre=${presentTimeStrap}&now=${presentTimeStrap}`,
   );
   return res.data;
 };

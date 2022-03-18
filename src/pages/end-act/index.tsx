@@ -5,8 +5,9 @@ import styles from "./index.module.scss";
 import { useActsState } from "@/store/useActsState";
 
 const HistoryAct: React.FC = () => {
-  const { ActsList, fetchEndedList } = useActsState();
+  const { ActsList, fetchEndedList, clearActList } = useActsState();
   useEffect(() => {
+    clearActList();
     fetchEndedList();
   }, []);
 

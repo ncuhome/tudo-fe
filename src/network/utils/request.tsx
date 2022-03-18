@@ -33,8 +33,3 @@ client.interceptors.response.use(
 );
 
 export default client;
-// const onResFullFilled = (res: AxiosResponse) => {
-//   return Promise.resolve(res)
-// };
-
-// request.interceptors.response.use(onResFullFilled);
