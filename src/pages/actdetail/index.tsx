@@ -12,71 +12,17 @@ import { getUserInfo } from "@/network/api/get-user-info";
 import { useActDetailState } from "@/store/useActDetailState";
 import { IActDetail } from "@/interface";
 import { amendAct, deleteAct } from "@/network/api/handle-act";
+import { AuthorSkeleton } from "./components/AuthorSkeleton";
+import { IntroSkeleton } from "./components/IntroSkeleton";
 
 const getQuery = (key: string) => {
   const url = new URL(location.href);
   return url.searchParams.get(key);
 };
 
-const ActDetail: React.FC = () => {
-  const { setOnEdit } = useOnEdit();
-  const { author, setFullAct } = useActDetailState();
-  const { role, fetchUserInfo } = useUserState();
-  const actID = getQuery("id");
-  const canModify = role === "team" ? true : false;
-
-  const fetchActDetail: any = async (actId: string | null) => {
-    const res: any = await getActDetail(actId);
-    const resData = res as IActDetail;
-    const { nickname } = await getUserInfo(res.user_id);
-    resData.nickname = nickname;
-
-    setFullAct({
-      actName: resData.title,
-      actLocation: resData.place,
-      startTime: resData.start_time,
-      endTime: resData.end_time,
-      author: resData.nickname,
-      content: resData.content,
-    });
-  };
-
-  useEffect(() => {
-    setFullAct({
-      actName: "loading...",
-      actLocation: "loading...",
-      startTime: "loading...",
-      endTime: "loading...",
-      author: "loading...",
-      content: "loading...",
-    });
-    setOnEdit(false);
-    fetchUserInfo();
-    fetchActDetail(actID);
-  }, []);
-
-  return (
-    <div className={styles.background}>
-      <HeadBar />
-      {canModify ? <EditBar /> : null}
-      <ActInfoCard />
-      <div className={styles.cut_line}>发布者</div>
-      <div className={styles.author}>
-        <img
-          style={{ width: "4vw", marginRight: "3vw" }}
-          src={"/img/author.svg"}
-        />
-        <span style={{ fontSize: "3vw" }}>{author}</span>
-      </div>
-      <div className={styles.cut_line}>简介</div>
-      <IntroModify />
-    </div>
-  );
-};
-
 const IntroModify: React.FC = () => {
   const { onEdit } = useOnEdit();
-  const { content, setActContent } = useActDetailState();
+  const { isLoading, content, setActContent } = useActDetailState();
   const { control, handleSubmit } = useForm();
   const onSubmit: SubmitHandler<any> = async (data) => {
     setActContent(data.content);
@@ -105,6 +51,8 @@ const IntroModify: React.FC = () => {
             defaultValue={content}
           />
         </div>
+      ) : isLoading ? (
+        <IntroSkeleton />
       ) : (
         <div className={styles.intro_text}>{content}</div>
       )}
@@ -175,6 +123,65 @@ const EditBar: React.FC = () => {
           编辑活动
         </span>
       )}
+    </div>
+  );
+};
+
+const ActDetail: React.FC = () => {
+  const { setOnEdit } = useOnEdit();
+  const { author, isLoading, setIsLoading, setFullAct } = useActDetailState();
+  const { role, fetchUserInfo } = useUserState();
+  const actID = getQuery("id");
+  const canModify = role === "team" ? true : false;
+
+  const fetchActDetail: any = async (actId: string | null) => {
+    try {
+      setIsLoading(true);
+      const res: any = await getActDetail(actId);
+      const resData = res as IActDetail;
+      const { nickname } = await getUserInfo(res.user_id);
+      resData.nickname = nickname;
+
+      setFullAct({
+        actName: resData.title,
+        actLocation: resData.place,
+        startTime: resData.start_time,
+        endTime: resData.end_time,
+        author: resData.nickname,
+        content: resData.content,
+      });
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchActDetail(actID);
+    setOnEdit(false);
+    fetchUserInfo();
+  }, []);
+
+  return (
+    <div className={styles.background}>
+      <HeadBar />
+      {canModify ? <EditBar /> : null}
+      <ActInfoCard />
+      <div className={styles.cut_line}>发布者</div>
+      {isLoading ? (
+        <AuthorSkeleton />
+      ) : (
+        <div className={styles.author}>
+          <img
+            style={{ width: "4vw", marginRight: "3vw" }}
+            src={"/img/author.svg"}
+          />
+          <span style={{ fontSize: "3vw" }}>{author}</span>
+        </div>
+      )}
+      <div className={styles.cut_line}>简介</div>
+      <IntroModify />
     </div>
   );
 };

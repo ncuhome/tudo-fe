@@ -11,6 +11,7 @@ export const useActDetailState = create(
       endTime: "",
       author: "",
       content: "",
+      isLoading: false,
     },
     (set) => ({
       setActBasicInfo: (BasicData: IActBasicInfoData) => {
@@ -43,6 +44,11 @@ export const useActDetailState = create(
           endTime: "",
           author: "",
           content: "",
+        });
+      },
+      setIsLoading: (value: boolean) => {
+        set({
+          isLoading: value,
         });
       },
     })

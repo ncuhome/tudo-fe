@@ -3,6 +3,7 @@ import { TextArea, DatePicker } from "antd-mobile";
 import { useForm, Controller } from "react-hook-form";
 import getTime from "date-fns/getTime";
 import styles from "./index.module.scss";
+import { ActInfoCardSkeleton } from "./component/skeleton";
 import { useActDetailState } from "@/store/useActDetailState";
 import { IModifyCardProps } from "@/interface";
 import { useFormat } from "@/hooks/useFormat";
@@ -163,32 +164,39 @@ export const ModifyInfoCard: React.FC<IModifyCardProps> = (
 };
 
 const NormalInfoCard: React.FC = () => {
-  const { actName, actLocation, startTime, endTime } = useActDetailState();
+  const { actName, actLocation, startTime, endTime, isLoading } =
+    useActDetailState();
 
   return (
-    <div className={styles.card_text_div}>
-      <div className={styles.card_text_title}>
-        <span>{actName}</span>
-      </div>
-      <div className={styles.card_text_info}>
-        <div style={{ marginBottom: "5vw" }} className={styles.info_detail}>
-          <img
-            style={{ width: "4vw", marginRight: "3vw" }}
-            src={"/img/location.svg"}
-          />
-          <span style={{ fontSize: "3vw" }}>{actLocation}</span>
+    <>
+      {isLoading ? (
+        <ActInfoCardSkeleton />
+      ) : (
+        <div className={styles.card_text_div}>
+          <div className={styles.card_text_title}>
+            <span>{actName}</span>
+          </div>
+          <div className={styles.card_text_info}>
+            <div style={{ marginBottom: "5vw" }} className={styles.info_detail}>
+              <img
+                style={{ width: "4vw", marginRight: "3vw" }}
+                src={"/img/location.svg"}
+              />
+              <span style={{ fontSize: "3vw" }}>{actLocation}</span>
+            </div>
+            <div className={styles.info_detail}>
+              <img
+                style={{ width: "4vw", marginRight: "3vw" }}
+                src={"/img/calender.svg"}
+              />
+              <span style={{ fontSize: "3vw" }}>{`${useFormat(
+                startTime
+              )} - ${useFormat(endTime)}`}</span>
+            </div>
+          </div>
         </div>
-        <div className={styles.info_detail}>
-          <img
-            style={{ width: "4vw", marginRight: "3vw" }}
-            src={"/img/calender.svg"}
-          />
-          <span style={{ fontSize: "3vw" }}>{`${useFormat(
-            startTime
-          )} - ${useFormat(endTime)}`}</span>
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
