@@ -64,7 +64,7 @@ const EditBar: React.FC = () => {
   const actID = getQuery("id");
   const navigate = useNavigate();
   const { onEdit, setOnEdit } = useOnEdit();
-  const { actName, actLocation, startTime, endTime, content } =
+  const { actName, actLocation, startTime, endTime, content, isLoading } =
     useActDetailState();
 
   const cancelActHandler = async () => {
@@ -95,8 +95,11 @@ const EditBar: React.FC = () => {
     <div className={styles.edit_bar}>
       {onEdit ? (
         <>
+          <span style={{ color: "grey" }} onClick={() => setOnEdit(false)}>
+            停止编辑
+          </span>
           <span
-            style={{ color: "red" }}
+            style={{ color: "red", marginLeft: "3vw" }}
             onClick={() =>
               Dialog.confirm({
                 content: "确认要取消这项活动吗? 取消后无法撤回",
@@ -118,7 +121,7 @@ const EditBar: React.FC = () => {
             完成
           </span>
         </>
-      ) : (
+      ) : isLoading ? null : (
         <span style={{ color: "#4CA8F3" }} onClick={() => setOnEdit(true)}>
           编辑活动
         </span>
