@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./index.module.scss";
 import { IActCardProps } from "@/interface";
 import { useFormat } from "@/hooks/useFormat";
+import { useFormatToDate } from "@/hooks/useFormatToDate";
+import { getDate, getDay, getMonth } from "date-fns";
+import { useCHNWeekDay } from "@/hooks/useCHNWeekDay";
 
 const ActCard: React.FC<IActCardProps> = (props: IActCardProps) => {
+  const getCHNDate = () => {
+    const startTime = useFormatToDate(props.start_time) as Date;
+    return useCHNWeekDay(getDay(startTime));
+  };
+
+  const getBriefDate = () => {
+    const startTime = useFormatToDate(props.start_time) as Date;
+    return (
+      JSON.stringify(getMonth(startTime) + 1) +
+      "/" +
+      JSON.stringify(getDate(startTime))
+    );
+  };
+
+  useEffect(() => {
+    getBriefDate();
+  }, []);
+
   return (
     <div className={styles.cardBox}>
       <div className={styles.cardDate}>
@@ -17,7 +38,7 @@ const ActCard: React.FC<IActCardProps> = (props: IActCardProps) => {
             whiteSpace: "nowrap",
           }}
         >
-          周四
+          {getCHNDate()}
         </div>
         <div
           style={{
@@ -27,7 +48,7 @@ const ActCard: React.FC<IActCardProps> = (props: IActCardProps) => {
             color: "rgb(12,167,170)",
           }}
         >
-          7/8
+          {getBriefDate()}
         </div>
       </div>
       <div className={styles.cardInfo}>

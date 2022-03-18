@@ -30,8 +30,7 @@ $border: 5vw;
 }
 
 .cardInfo {
-  margin-right: $border;
-  width: 50%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,6 +46,10 @@ $border: 5vw;
     align-items: center;
     font-size: 3vw;
     color: rgb(112, 112, 112);
+    margin-right: 0;
+  }
+  .cardInfo_date > span {
+    width: 100%;
   }
   .cardInfo_date > img {
     height: 5vw;
