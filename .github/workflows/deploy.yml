@@ -26,7 +26,7 @@ jobs:
           yarn build
 
       - name: Upload website to Aliyun OSS
-        uses: ncuhome/ali-oss-website-action
+        uses: ncuhome/ali-oss-website-action@v1.1.0
         id: upload
         with:
           folder: dist
@@ -34,3 +34,4 @@ jobs:
           accessKeySecret: ${{ secrets.ACCESSKEYSECRET }}
           bucket: tudo-fe
           endpoint: oss-cn-beijing.aliyuncs.com
+          incremental: false
