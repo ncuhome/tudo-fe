@@ -1,0 +1,32 @@
+name: Deploy
+
+on: 
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    
+    - name: Use Node.js 14
+      uses: actions/setup-node@v3
+      with: 
+        node-version: '14'
+    - name: Build project
+      run: |
+        echo install dependencies...
+        yarn
+        echo build project...
+        yarn build
+    - name: Upload website to Aliyun OSS
+      uses: ncuhome/ali-oss-website-action
+      id: upload
+      with:
+        folder: dist
+        accessKeyId: ${{ secrets.ACCESSKEYID }}
+        accessKeySecret: ${{ secrets.ACCESSKEYSECRET }}
+        bucket: tudo-fe
+        endpoint: oss-cn-beijing.aliyuncs.com
