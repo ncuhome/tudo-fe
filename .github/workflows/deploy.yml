@@ -34,4 +34,4 @@ jobs:
           accessKeySecret: ${{ secrets.ACCESSKEYSECRET }}
           bucket: tudo-fe
           endpoint: oss-cn-beijing.aliyuncs.com
-          incremental: false
+          incremental: true
