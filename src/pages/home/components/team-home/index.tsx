@@ -73,7 +73,7 @@ const TeamHome: React.FC = () => {
               ClickIngActHandler();
             }}
           >
-            即将进行
+            待举办
           </div>
           <div
             className={styles.tab_text_right}
@@ -81,7 +81,7 @@ const TeamHome: React.FC = () => {
               ClickPastActHandler();
             }}
           >
-            历史
+            已举办
           </div>
         </div>
       </div>
